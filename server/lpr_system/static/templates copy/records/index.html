@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Registros{% endblock %}
+
+{% block content %}
+
+<link href="{% static 'styles/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+
+<div class="table-responsive">
+
+    <form method="get" action="{% url 'license_plate:license_plate' %}">
+        
+        <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+            <div class="input-group">
+                <input type="text" name="plate_number" class="form-control bg-light border-0 small" placeholder="Buscar matrícula" value="{{ request.GET.plate_number }}" aria-label="Buscar" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="submit">
+                        <i class="fas fa-search fa-sm"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+        
+        <div class="dropdown no-arrow mb-4 show">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                Filtrar por fecha
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 38px, 0px);" x-placement="bottom-start">
+                <button class="dropdown-item" type="submit" name="filter" value="day">Hoy</button>
+                <button class="dropdown-item" type="submit" name="filter" value="week">Semana</button>
+                <button class="dropdown-item" type="submit" name="filter" value="month">Mes</button>
+            </div>
+        </div>
+    
+        
+        <button class="button" type="submit">Restablecer filtro</button>
+
+    </form>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Número Matrícula</th>
+            <th>Hora Entrada</th>
+            <th>Fecha Entrada</th>
+            <th>Hora Salida</th>
+            <th>Fecha Salida</th>
+            <th>Precio</th>
+            <th class="width-100">Operaciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for record in page_obj %}
+        <tr>
+            <td>{{ record.plate_number }}</td>
+            <td>{{ record.entry_time }}</td>
+            <td>{{ record.entry_date }}</td>
+            {% if record.exit_time %}
+                <td>{{ record.exit_time }}</td>
+                <td>{{ record.exit_date }}</td>
+                <td>{{ record.amount_paid }} €</td>
+            {% else %}
+                <td>--:--:--</td>
+                <td>--/--/--</td>
+                <td>--€</td>
+            {% endif %}
+            
+            <td>
+                <form action="{% url 'license_plate:delete_license_plate' record.pk %}" method="post" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit">Eliminar</button>
+            </form></td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1{% if request.GET.plate_number %}&plate_number={{ request.GET.plate_number }}{% endif %}{% if request.GET.entry_date %}&entry_date={{ request.GET.entry_date }}{% endif %}{% if request.GET.exit_date %}&exit_date={{ request.GET.exit_date }}{% endif %}">Inicio</a>
+                <a href="?page={{ page_obj.previous_page_number }}{% if request.GET.plate_number %}&plate_number={{ request.GET.plate_number }}{% endif %}{% if request.GET.entry_date %}&entry_date={{ request.GET.entry_date }}{% endif %}{% if request.GET.exit_date %}&exit_date={{ request.GET.exit_date }}{% endif %}">Anterior</a>
+            {% endif %}
+
+            {% if page_obj.number > 2 %}
+                ...
+            {% endif %}
+
+            {% for num in page_obj.paginator.page_range %}
+                {% if num > page_obj.number|add:-2 and num < page_obj.number|add:4 %}
+                    {% if page_obj.number == num %}
+                        <strong>{{ num }}</strong>
+                    {% else %}
+                        <a href="?page={{ num }}{% if request.GET.plate_number %}&plate_number={{ request.GET.plate_number }}{% endif %}{% if request.GET.entry_date %}&entry_date={{ request.GET.entry_date }}{% endif %}{% if request.GET.exit_date %}&exit_date={{ request.GET.exit_date }}{% endif %}">{{ num }}</a>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+
+            {% if page_obj.number < page_obj.paginator.num_pages|add:-4 %}
+                ...
+                <a href="?page={{ page_obj.paginator.num_pages }}{% if request.GET.plate_number %}&plate_number={{ request.GET.plate_number }}{% endif %}{% if request.GET.entry_date %}&entry_date={{ request.GET.entry_date }}{% endif %}{% if request.GET.exit_date %}&exit_date={{ request.GET.exit_date }}{% endif %}">{{ page_obj.paginator.num_pages }}</a>
+            {% endif %}
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}{% if request.GET.plate_number %}&plate_number={{ request.GET.plate_number }}{% endif %}{% if request.GET.entry_date %}&entry_date={{ request.GET.entry_date }}{% endif %}{% if request.GET.exit_date %}&exit_date={{ request.GET.exit_date }}{% endif %}">Siguiente</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}{% if request.GET.plate_number %}&plate_number={{ request.GET.plate_number }}{% endif %}{% if request.GET.entry_date %}&entry_date={{ request.GET.entry_date }}{% endif %}{% if request.GET.exit_date %}&exit_date={{ request.GET.exit_date }}{% endif %}">Última</a>
+            {% endif %}
+        </span>
+    </div>
+    
+</div>
+
+
+{% endblock %}
+

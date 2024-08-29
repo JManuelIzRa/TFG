@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %}Depresión{% endblock %}
+{% block headers %}
+<style>
+    .label {
+        position: absolute;
+    }
+
+    path {
+        stroke: steelblue;
+        stroke-width: 2;
+        fill: none;
+    }
+
+    .axis path,
+    .axis line {
+        fill: none;
+        stroke: grey;
+        stroke-width: 1;
+        shape-rendering: crispEdges;
+    }
+
+
+    .label {
+        position: absolute;
+    }
+
+    circle {
+        cursor: pointer;
+        fill: steelblue;
+    }
+</style>
+{% endblock %}
+{% block content %}
+<p>
+    <a href="{% url 'reports:reports' %}?user_id={{ user_id }}">Volver Atrás</a>
+</p>
+<div class="anxiety-graphic table-responsive"></div>
+
+<script src="{% static 'js/d3.v3.min.js' %}"></script>
+<script>
+    var url = "{% url 'reports:depression-json' user_id=user_id %}";
+</script>
+<script src="{% static 'js/linechart.js' %}"></script>
+
+{% endblock %}

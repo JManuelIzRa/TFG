@@ -1,0 +1,844 @@
+{% extends "base.html" %}
+{% block title %}Cuestionarios{% endblock %}
+
+{% block content %}
+<p>
+    <a href="{% url 'reports:reports' %}?user_id={{ user_id }}">Volver Atrás</a>
+</p>
+<div class="text-right"><a href="{% url 'reports:download-csv-individual' object.pk %}">Descargar en CSV</a></div>
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>USUARIO</th>
+            <th>FECHA</th>
+            <th>EDAD</th>
+            <th>POBLACIÓN</th>
+            <th>PROVINCIA</th>
+            <th>EST_CIVIL</th>
+            <th>ETAPA</th>
+            <th>SIT_LABORAL</th>
+            <th>PROFESIÓN</th>
+            <th>NIV_ESTUDIOS</th>
+            <th>EJERCICIO</th>
+            <th>FREC_EJER</th>
+            <th>TIPO_EJER</th>
+            <th>FASE</th>
+            <th>AUTO_1</th>
+            <th>AUTO_2</th>
+            <th>AUTO_3</th>
+            <th>AUTO_4</th>
+            <th>AUTO_5</th>
+            <th>AUTO_6</th>
+            <th>AUTO_7</th>
+            <th>AUTO_8</th>
+            <th>AUTO_9</th>
+            <th>AUTO_10</th>
+            <th>HADS_11</th>
+            <th>HADS_12</th>
+            <th>HADS_13</th>
+            <th>HADS_14</th>
+            <th>HADS_15</th>
+            <th>HADS_16</th>
+            <th>HADS_17</th>
+            <th>HADS_18</th>
+            <th>HADS_19</th>
+            <th>HADS_20</th>
+            <th>HADS_21</th>
+            <th>HADS_22</th>
+            <th>HADS_23</th>
+            <th>HADS_24</th>
+            <th>APOYO_25.1</th>
+            <th>APOYO_25.2</th>
+            <th>APOYO_26</th>
+            <th>APOYO_27</th>
+            <th>APOYO_28</th>
+            <th>APOYO_29</th>
+            <th>APOYO_30</th>
+            <th>APOYO_31</th>
+            <th>APOYO_32</th>
+            <th>APOYO_33</th>
+            <th>APOYO_34</th>
+            <th>APOYO_35</th>
+            <th>APOYO_36</th>
+            <th>APOYO_37</th>
+            <th>APOYO_38</th>
+            <th>APOYO_39</th>
+            <th>APOYO_40</th>
+            <th>APOYO_41</th>
+            <th>APOYO_42</th>
+            <th>APOYO_43</th>
+            <th>APOYO_44</th>
+            <th>OPT_45</th>
+            <th>OPT_46</th>
+            <th>OPT_47</th>
+            <th>OPT_48</th>
+            <th>OPT_49</th>
+            <th>OPT_50</th>
+            <th>RESI_51</th>
+            <th>RESI_52</th>
+            <th>RESI_53</th>
+            <th>RESI_54</th>
+            <th>RESI_55</th>
+            <th>RESI_56</th>
+            <th>RESI_57</th>
+            <th>RESI_58</th>
+            <th>RESI_59</th>
+            <th>RESI_60</th>
+            <th>RESI_61</th>
+            <th>RESI_62</th>
+            <th>RESI_63</th>
+            <th>RESI_64</th>
+            <th>RESI_65</th>
+            <th>RESI_66</th>
+            <th>RESI_67</th>
+            <th>RESI_68</th>
+            <th>RESI_69</th>
+            <th>RESI_70</th>
+            <th>RESI_71</th>
+            <th>RESI_72</th>
+            <th>RESI_73</th>
+            <th>RESI_74</th>
+            <th>RESI_75</th>
+            <th>AFR_76</th>
+            <th>AFR_77</th>
+            <th>AFR_78</th>
+            <th>AFR_79</th>
+            <th>AFR_80</th>
+            <th>AFR_81</th>
+            <th>AFR_82</th>
+            <th>AFR_83</th>
+            <th>AFR_84</th>
+            <th>AFR_85</th>
+            <th>AFR_86</th>
+            <th>AFR_87</th>
+            <th>AFR_88</th>
+            <th>AFR_89</th>
+            <th>AFR_90</th>
+            <th>AFR_91</th>
+            <th>AFR_92</th>
+            <th>AFR_93</th>
+            <th>AFR_94</th>
+            <th>AFR_95</th>
+            <th>AFR_96</th>
+            <th>AFR_97</th>
+            <th>AFR_98</th>
+            <th>AFR_99</th>
+            <th>AFR_100</th>
+            <th>AFR_101</th>
+            <th>AFR_102</th>
+            <th>AFR_103</th>
+            <th>AFR_104</th>
+            <th>AFR_105</th>
+            <th>AFR_106</th>
+            <th>AFR_107</th>
+            <th>AFR_108</th>
+            <th>AFR_109</th>
+            <th>AFR_110</th>
+            <th>AFR_111</th>
+            <th>AFR_112</th>
+            <th>AFR_113</th>
+            <th>AFR_114</th>
+            <th>AFR_115</th>
+            <th>CPT_116</th>
+            <th>CPT_117</th>
+            <th>CPT_118</th>
+            <th>CPT_119</th>
+            <th>CPT_120</th>
+            <th>CPT_121</th>
+            <th>CPT_122</th>
+            <th>CPT_123</th>
+            <th>CPT_124</th>
+            <th>CPT_125</th>
+            <th>CPT_126</th>
+            <th>CPT_127</th>
+            <th>CPT_128</th>
+            <th>CPT_129</th>
+            <th>CPT_130</th>
+            <th>CPT_131</th>
+            <th>CPT_132</th>
+            <th>CPT_133</th>
+            <th>CPT_134</th>
+            <th>CPT_135</th>
+            <th>CPT_136</th>
+            <th>FISIC_137</th>
+            <th>FISIC_138</th>
+            <th>FISIC_139</th>
+            <th>FISIC_140</th>
+            <th>FISIC_141</th>
+            <th>FISIC_142</th>
+            <th>FISIC_143</th>
+            <th>FISIC_144</th>
+            <th>FISIC_145</th>
+            <th>FISIC_146</th>
+            <th>FISIC_147</th>
+            <th>FISIC_148</th>
+            <th>COGN_149</th>
+            <th>COGN_150</th>
+            <th>COGN_151</th>
+            <th>IMAG_152</th>
+            <th>IMAG_153</th>
+            <th>IMAG_154</th>
+            <th>IMAG_155</th>
+            <th>IMAG_156</th>
+            <th>IMAG_157.1</th>
+            <th>IMAG_157.2</th>
+            <th>IMAG_157.3</th>
+            <th>IMAG_157.4</th>
+            <th>IMAG_157.5</th>
+            <th>MOV_158</th>
+            <th>MOV_159</th>
+            <th>MOV_160</th>
+            <th>MOV_161</th>
+            <th>MOV_162</th>
+            <th>MOV_163</th>
+            <th>MOV_164</th>
+            <th>MOV_165</th>
+            <th>MOV_166</th>
+            <th>DEP_167</th>
+            <th>WAI_168</th>
+            <th>WAI_169</th>
+            <th>WAI_170</th>
+            <th>WAI_171</th>
+            <th>WAI_172</th>
+            <th>WAI_173</th>
+            <th>WAI_174</th>
+            <th>WAI_175</th>
+            <th>WAI_176</th>
+            <th>WAI_177</th>
+            <th>WAI_178</th>
+            <th>SEX_179</th>
+            <th>SEX_180</th>
+            <th>SEX_181</th>
+            <th>SEX_182</th>
+            <th>SEX_183.1</th>
+            <th>SEX_183.2</th>
+            <th>SEX_183.3</th>
+            <th>SEX_183.4</th>
+            <th>SEX_183.5</th>
+            <th>RELIG_184</th>
+            <th>IE_185</th>
+            <th>IE_186</th>
+            <th>IE_187</th>
+            <th>IE_188</th>
+            <th>IE_189</th>
+            <th>IE_190</th>
+            <th>IE_191</th>
+            <th>IE_192</th>
+            <th>IE_193</th>
+            <th>IE_194</th>
+            <th>IE_195</th>
+            <th>IE_196</th>
+            <th>IE_197</th>
+            <th>IE_198</th>
+            <th>IE_199</th>
+            <th>IE_200</th>
+            <th>IE_201</th>
+            <th>IE_202</th>
+            <th>IE_203</th>
+            <th>IE_204</th>
+            <th>IE_205</th>
+            <th>IE_206</th>
+            <th>IE_207</th>
+            <th>IE_208</th>
+            <th>MEDIO_209</th>
+            <th>MEDIO_210</th>
+            <th>MEDIO_211</th>
+            <th>MEDIO_212</th>
+            <th>MEDIO_213</th>
+            <th>MEDIO_214</th>
+            <th>MEDIO_215</th>
+            <th>MEDIO_216</th>
+            <th>ALEGR_217</th>
+            <th>TRIST_217</th>
+            <th>MIED_217</th>
+            <th>IRA_217</th>
+            <th>ASC_217</th>
+            <th>CULP_217</th>
+            <th>VERG_217</th>
+            <th>INTER_217</th>
+            <th>SATIS_217</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+        {% for u in user %}
+            <td>{{ u.code }}</td>
+            <td>{% if object.fecha %} {{ object.fecha|date:"d/m/Y" }} {% else %} {{ object.fecha_inicial|date:"d/m/Y" }}{% endif %}</td>
+            <td>{{ u.edad|default:'' }}</td>
+            <td>{{ u.ciudad }}</td>
+            <td>{{ u.provincia }}</td>
+            <td>{{ u.est_civil }}</td>
+            <td>{{ u.etapa }}</td>
+            <td>{{ u.sit_laboral }}</td>
+            <td>{{ u.profesion }}</td>
+            <td>{{ u.niv_estudios }}</td>
+            <td>{{ u.ejercicio }}</td>
+            <td>{{ u.frec_ejer}}</td>
+            <td>{{ u.tipo_ejer }}</td>
+        {% endfor %}
+        {% for object in queryset %}
+            <td>{{ object.fase }}</td>
+            <td>{{ object.p1 }}</td>
+            <td>{{ object.p2 }}</td>
+            <td>{{ object.p3 }}</td>
+            <td>{{ object.p4 }}</td>
+            <td>{{ object.p5 }}</td>
+            <td>{{ object.p6 }}</td>
+            <td>{{ object.p7 }}</td>
+            <td>{{ object.p8 }}</td>
+            <td>{{ object.p9 }}</td>
+            <td>{{ object.p10 }}</td>
+            <td>{{ object.p11 }}</td>
+            <td>{{ object.p12 }}</td>
+            <td>{{ object.p13 }}</td>
+            <td>{{ object.p14 }}</td>
+            <td>{{ object.p15 }}</td>
+            <td>{{ object.p16 }}</td>
+            <td>{{ object.p17 }}</td>
+            <td>{{ object.p18 }}</td>
+            <td>{{ object.p19 }}</td>
+            <td>{{ object.p20 }}</td>
+            <td>{{ object.p21 }}</td>
+            <td>{{ object.p22 }}</td>
+            <td>{{ object.p23 }}</td>
+            <td>{{ object.p24 }}</td>
+            <td>{{ object.p25_1 }}</td>
+            <td>{{ object.p25_2 }}</td>
+            <td>{{ object.p26 }}</td>
+            <td>{{ object.p27 }}</td>
+            <td>{{ object.p28 }}</td>
+            <td>{{ object.p29 }}</td>
+            <td>{{ object.p30 }}</td>
+            <td>{{ object.p31 }}</td>
+            <td>{{ object.p32 }}</td>
+            <td>{{ object.p33 }}</td>
+            <td>{{ object.p34 }}</td>
+            <td>{{ object.p35 }}</td>
+            <td>{{ object.p36 }}</td>
+            <td>{{ object.p37 }}</td>
+            <td>{{ object.p38 }}</td>
+            <td>{{ object.p39 }}</td>
+            <td>{{ object.p40 }}</td>
+            <td>{{ object.p41 }}</td>
+            <td>{{ object.p42 }}</td>
+            <td>{{ object.p43 }}</td>
+            <td>{{ object.p44 }}</td>
+            <td>{{ object.p45 }}</td>
+            <td>{{ object.p46 }}</td>
+            <td>{{ object.p47 }}</td>
+            <td>{{ object.p48 }}</td>
+            <td>{{ object.p49 }}</td>
+            <td>{{ object.p50 }}</td>
+            <td>{{ object.p51 }}</td>
+            <td>{{ object.p52 }}</td>
+            <td>{{ object.p53 }}</td>
+            <td>{{ object.p54 }}</td>
+            <td>{{ object.p55 }}</td>
+            <td>{{ object.p56 }}</td>
+            <td>{{ object.p57 }}</td>
+            <td>{{ object.p58 }}</td>
+            <td>{{ object.p59 }}</td>
+            <td>{{ object.p60 }}</td>
+            <td>{{ object.p61 }}</td>
+            <td>{{ object.p62 }}</td>
+            <td>{{ object.p63 }}</td>
+            <td>{{ object.p64 }}</td>
+            <td>{{ object.p65 }}</td>
+            <td>{{ object.p66 }}</td>
+            <td>{{ object.p67 }}</td>
+            <td>{{ object.p68 }}</td>
+            <td>{{ object.p69 }}</td>
+            <td>{{ object.p70 }}</td>
+            <td>{{ object.p71 }}</td>
+            <td>{{ object.p72 }}</td>
+            <td>{{ object.p73 }}</td>
+            <td>{{ object.p74 }}</td>
+            <td>{{ object.p75 }}</td>
+            <td>{{ object.p76 }}</td>
+            <td>{{ object.p77 }}</td>
+            <td>{{ object.p78 }}</td>
+            <td>{{ object.p79 }}</td>
+            <td>{{ object.p80 }}</td>
+            <td>{{ object.p81 }}</td>
+            <td>{{ object.p82 }}</td>
+            <td>{{ object.p83 }}</td>
+            <td>{{ object.p84 }}</td>
+            <td>{{ object.p85 }}</td>
+            <td>{{ object.p86 }}</td>
+            <td>{{ object.p87 }}</td>
+            <td>{{ object.p88 }}</td>
+            <td>{{ object.p89 }}</td>
+            <td>{{ object.p90 }}</td>
+            <td>{{ object.p91 }}</td>
+            <td>{{ object.p92 }}</td>
+            <td>{{ object.p93 }}</td>
+            <td>{{ object.p94 }}</td>
+            <td>{{ object.p95 }}</td>
+            <td>{{ object.p96 }}</td>
+            <td>{{ object.p97 }}</td>
+            <td>{{ object.p98 }}</td>
+            <td>{{ object.p99 }}</td>
+            <td>{{ object.p100 }}</td>
+            <td>{{ object.p101 }}</td>
+            <td>{{ object.p102 }}</td>
+            <td>{{ object.p103 }}</td>
+            <td>{{ object.p104 }}</td>
+            <td>{{ object.p105 }}</td>
+            <td>{{ object.p106 }}</td>
+            <td>{{ object.p107 }}</td>
+            <td>{{ object.p108 }}</td>
+            <td>{{ object.p109 }}</td>
+            <td>{{ object.p110 }}</td>
+            <td>{{ object.p111 }}</td>
+            <td>{{ object.p112 }}</td>
+            <td>{{ object.p113 }}</td>
+            <td>{{ object.p114 }}</td>
+            <td>{{ object.p115 }}</td>
+            <td>{{ object.p116 }}</td>
+            <td>{{ object.p117 }}</td>
+            <td>{{ object.p118 }}</td>
+            <td>{{ object.p119 }}</td>
+            <td>{{ object.p120 }}</td>
+            <td>{{ object.p121 }}</td>
+            <td>{{ object.p122 }}</td>
+            <td>{{ object.p123 }}</td>
+            <td>{{ object.p124 }}</td>
+            <td>{{ object.p125 }}</td>
+            <td>{{ object.p126 }}</td>
+            <td>{{ object.p127 }}</td>
+            <td>{{ object.p128 }}</td>
+            <td>{{ object.p129 }}</td>
+            <td>{{ object.p130 }}</td>
+            <td>{{ object.p131 }}</td>
+            <td>{{ object.p132 }}</td>
+            <td>{{ object.p133 }}</td>
+            <td>{{ object.p134 }}</td>
+            <td>{{ object.p135 }}</td>
+            <td>{{ object.p136 }}</td>
+            <td>{{ object.p137 }}</td>
+            <td>{{ object.p138 }}</td>
+            <td>{{ object.p139 }}</td>
+            <td>{{ object.p140 }}</td>
+            <td>{{ object.p141 }}</td>
+            <td>{{ object.p142 }}</td>
+            <td>{{ object.p143 }}</td>
+            <td>{{ object.p144 }}</td>
+            <td>{{ object.p145 }}</td>
+            <td>{{ object.p146 }}</td>
+            <td>{{ object.p147 }}</td>
+            <td>{{ object.p148 }}</td>
+            <td>{{ object.p149 }}</td>
+            <td>{{ object.p150 }}</td>
+            <td>{{ object.p151 }}</td>
+            <td>{{ object.p152 }}</td>
+            <td>{{ object.p153 }}</td>
+            <td>{{ object.p154 }}</td>
+            <td>{{ object.p155 }}</td>
+            <td>{{ object.p156 }}</td>
+            <td>{{ object.p157_1 }}</td>
+            <td>{{ object.p157_2 }}</td>
+            <td>{{ object.p157_3 }}</td>
+            <td>{{ object.p157_4 }}</td>
+            <td>{{ object.p157_5 }}</td>
+            <td>{{ object.p158 }}</td>
+            <td>{{ object.p159 }}</td>
+            <td>{{ object.p160 }}</td>
+            <td>{{ object.p161 }}</td>
+            <td>{{ object.p162 }}</td>
+            <td>{{ object.p163 }}</td>
+            <td>{{ object.p164 }}</td>
+            <td>{{ object.p165 }}</td>
+            <td>{{ object.p166 }}</td>
+            <td>{{ object.p167 }}</td>
+            <td>{{ object.p168 }}</td>
+            <td>{{ object.p169 }}</td>
+            <td>{{ object.p170 }}</td>
+            <td>{{ object.p171 }}</td>
+            <td>{{ object.p172 }}</td>
+            <td>{{ object.p173 }}</td>
+            <td>{{ object.p174 }}</td>
+            <td>{{ object.p175 }}</td>
+            <td>{{ object.p176 }}</td>
+            <td>{{ object.p177 }}</td>
+            <td>{{ object.p178 }}</td>
+            <td>{{ object.p179 }}</td>
+            <td>{{ object.p180 }}</td>
+            <td>{{ object.p181 }}</td>
+            <td>{{ object.p182 }}</td>
+            <td>{{ object.p183_1 }}</td>
+            <td>{{ object.p183_2 }}</td>
+            <td>{{ object.p183_3 }}</td>
+            <td>{{ object.p183_4 }}</td>
+            <td>{{ object.p183_5 }}</td>
+            <td>{{ object.p184 }}</td>
+            <td>{{ object.p185 }}</td>
+            <td>{{ object.p186 }}</td>
+            <td>{{ object.p187 }}</td>
+            <td>{{ object.p188 }}</td>
+            <td>{{ object.p189 }}</td>
+            <td>{{ object.p190 }}</td>
+            <td>{{ object.p191 }}</td>
+            <td>{{ object.p192 }}</td>
+            <td>{{ object.p193 }}</td>
+            <td>{{ object.p194 }}</td>
+            <td>{{ object.p195 }}</td>
+            <td>{{ object.p196 }}</td>
+            <td>{{ object.p197 }}</td>
+            <td>{{ object.p198 }}</td>
+            <td>{{ object.p199 }}</td>
+            <td>{{ object.p200 }}</td>
+            <td>{{ object.p201 }}</td>
+            <td>{{ object.p202 }}</td>
+            <td>{{ object.p203 }}</td>
+            <td>{{ object.p204 }}</td>
+            <td>{{ object.p205 }}</td>
+            <td>{{ object.p206 }}</td>
+            <td>{{ object.p207 }}</td>
+            <td>{{ object.p208 }}</td>
+            <td>{{ object.p209 }}</td>
+            <td>{{ object.p210 }}</td>
+            <td>{{ object.p211 }}</td>
+            <td>{{ object.p212 }}</td>
+            <td>{{ object.p213 }}</td>
+            <td>{{ object.p214 }}</td>
+            <td>{{ object.p215 }}</td>
+            <td>{{ object.p216 }}</td>
+            <td>{{ object.p217 }}</td>
+            <td>{{ object.p218 }}</td>
+            <td>{{ object.p219 }}</td>
+            <td>{{ object.p220 }}</td>
+            <td>{{ object.p221 }}</td>
+            <td>{{ object.p222 }}</td>
+            <td>{{ object.p223 }}</td>
+            <td>{{ object.p224 }}</td>
+            <td>{{ object.p225 }}</td>
+            <td>{{ object.p226 }}</td>
+            <td>{{ object.p227 }}</td>
+            <td>{{ object.p228 }}</td>
+            <td>{{ object.p229 }}</td>
+            <td>{{ object.p230 }}</td>
+            <td>{{ object.p231 }}</td>
+            <td>{{ object.p232 }}</td>
+            <td>{{ object.p233 }}</td>
+            <td>{{ object.p234 }}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+{% endfor %}
+<div>
+    <br>
+    <hr size="2px" color="black" />
+    <p>
+        <strong>Interpretación cuestionario autoestima:</strong><br> {{ interpretacion_autoestima }}
+    </p> 
+    <br>
+
+    <hr size="2px" color="black" />   
+    <p>
+        <strong>Interpretación cuestionario ansiedad y depresión:</strong><br>
+        <ul>
+            <li>
+                <strong>Ansiedad:</strong> {{ interpretacion_ansiedad }}
+            </li>
+            <li>
+                <strong>Depresión:</strong> {{ interpretacion_depresion}}
+            </li>
+        </ul>
+    </p>
+    <br>
+
+    <hr size="2px" color="black" />
+    <p>
+        <strong>Interpretación cuestionario apoyo social:</strong>
+        <ul>
+            <li>
+                <strong>Apoyo social:</strong> {{ interpretacion_apoyo_social }}
+            </li>
+            <li>
+                <strong>Apoyo emocional informacional:</strong> {{ interpretacion_apoyo_emocional_informacional }}
+            </li>
+            <li>
+                <strong>Apoyo instrumental:</strong> {{ interpretacion_apoyo_instrumental }}
+            </li>
+            <li>
+                <strong>Apoyo efectivo:</strong> {{ interpretacion_apoyo_afectivo }}
+            </li>
+            <li>
+                <strong>Interacción social positiva:</strong> {{ interpretacion_interaccion_social_positiva }}
+            </li>
+        </ul>
+    </p>
+    <br>
+
+    <hr size="2px" color="black" />
+    <p>
+        <strong>Interpretación cuestionario optimismo:</strong>
+        <ul>
+            <li>
+                <strong>Optimismo:</strong> {{ interpretacion_optimismo }}
+            </li>
+        </ul>
+    </p>
+    <br>
+
+    <hr size="2px" color="black" />
+    <p>
+        <strong>Interpretación cuestionario resiliencia:</strong>
+        <ul>
+            <li>
+                <strong>Resiliencia global:</strong> {{ interpretacion_global_resiliencia }}
+            </li>
+            <li>
+                <strong>Ecuanimidad:</strong> {{ interpretacion_ecuanimidad }}
+            </li>
+            <li>
+                <strong>Perseverancia:</strong> {{ interpretacion_perseverancia }}
+            </li>
+            <li>
+                <strong>Confianza en sí mismo:</strong> {{ interpretacion_autoconfianza }}
+            </li>
+            <li>
+                <strong>Satisfacción personal:</strong> {{ interpretacion_satisfaccion_personal }}
+            </li>
+            <li>
+                <strong>Sentirse bien:</strong> {{ interpretacion_sentirse_bien }}
+            </li>
+        </ul>
+    </p>
+    <br>
+
+    <hr size="2px" color="black" />
+    <p>
+        <strong>Interpretación cuestionario afrontamiento:</strong>
+        <ul>
+            <li>
+                <strong>Resolución de problemas:</strong> {{ interpretacion_resolucion_problemas }}
+            </li>
+            <li>
+                <strong>Autocritica:</strong> {{ interpretacion_autocritica }}
+            </li>
+            <li>
+                <strong>Expresión de emociones:</strong> {{ interpretacion_expresion_emociones }}
+            </li>
+            <li>
+                <strong>Pensamiento desiderativo:</strong> {{ interpretacion_pensamiento_desiderativo }}
+            </li>
+            <li>
+                <strong>Apoyo social:</strong> {{ interpretacion_resolucion_problemas_apoyo_social }}
+            </li>
+            <li>
+                <strong>Reestructuración cognitiva:</strong> {{ interpretacion_reestructuracion_cognitiva }}
+            </li>
+            <li>
+                <strong>Evitación de problemas:</strong> {{ interpretacion_evitacion_problemas }}
+            </li>
+            <li>
+                <strong>Retirada social:</strong> {{ interpretacion_retirada_social }}
+            </li>
+        </ul>
+    </p>
+    <br>
+
+    <hr size="2px" color="black" />
+    <p>
+        <strong>Interpretación cuestionario crecimiento postraumático:</strong>
+        <ul>
+            <li>
+                <strong>Dimensión global:</strong> {{ interpretacion_crecimiento_postraumatico }}
+            </li>
+        </ul>
+    </p>
+    <hr size="2px" color="black" />
+    <p>
+        <strong>Interpretación cuestionario físico:</strong>
+        <ul>
+            <li>
+                <strong>Dimensión global:</strong> {{ interpretacion_global_fisico }}
+            </li>
+            <li>
+                <strong>Área funcional:</strong> {{ interpretacion_area_funcional_fisico }}
+            </li>
+            <li>
+                <strong>Área síntomas:</strong> {{ interpretacion_area_sintomas_fisico }}
+            </li>
+        </ul>
+    </p>
+    <br>
+
+    <hr size="2px" color="black" />
+    <p>
+        <strong>Interpretación cuestionario cognitivo:</strong>
+        <ul>
+            <li>
+                <strong>Preocupación por su salud en el futuro:</strong> {{ interpretacion_preocupacion_salud_futuro }}
+            </li>
+            <li>
+                <strong>Función cognitiva:</strong> {{ interpretacion_funcion_cognitiva }}
+            </li>
+        </ul>
+    </p>
+    <br>
+
+    <hr size="2px" color="black" />
+    <p>
+        <strong>Interpretación cuestionario imagen corporal:</strong>
+        <ul>
+            <li>
+                <strong>Dimensión global de cuerpo y aspecto:</strong> {{ interpretacion_global_cuerpo_y_aspecto }}
+            </li>
+            <li>
+                <strong>Dimensión imagen corporal:</strong> {{ interpretacion_imagen_corporal }}
+            </li>
+            <li>
+                <strong>Preocupación caida de pelo:</strong> {{ interpretacion_preocupacion_caida_pelo }}
+            </li>
+        </ul>
+    </p>
+    <br>
+
+    <hr size="2px" color="black" />
+    <p>
+        <strong>Interpretación cuestionario movilidad: </strong>(mayor puntuación mejor estado de salud global)
+        <ul>
+            <li>
+                <strong>Dimensión estado global de la salud:</strong> {{ puntos_dimension_estado_global_salud }}
+            </li>
+            <li>
+                <strong>Dimensión función física:</strong> {{ puntos_dimension_funcion_fisica }}
+            </li>
+            <li>
+                <strong>Dimensión actividad cotidiana:</strong> {{ puntos_actividad_cotidiana }}
+            </li>
+        </ul>
+    </p>
+    <br>
+
+    <hr size="2px" color="black" />
+    <p>
+        <strong>Interpretación cuestionario dependencia a medicamentos: </strong>(mayor puntuación peor estado de salud global)
+        <ul>
+            <li>
+                <strong>Dependencia a medicamentos:</strong> {{ interpretacion_dependencia_medicamentos }}
+            </li>
+        </ul>
+    </p>
+    <br>
+
+    <hr size="2px" color="black" />
+    <p>
+        <strong>Interpretación cuestionario sexualidad:</strong>
+        <ul>
+            <li>
+                <strong>Dimensión global de sexualidad:</strong> {{ interpretacion_global_sexualidad }}
+            </li>
+            <li>
+                <strong>Dimensión función sexual:</strong> {{ interpretacion_funcion_sexual }}
+            </li>
+            <li>
+                <strong>Dimensión disfrute sexual:</strong> {{ interpretacion_disfrute_sexual }}
+            </li>
+        </ul>
+    </p>
+    <br>
+
+    <hr size="2px" color="black" />
+    <p>
+        <strong>Interpretación cuestionario religión:</strong>
+        <ul>
+            <li>
+                <strong>Sentido de la vida:</strong> {{ interpretacion_cuestionario_religion }}
+            </li>
+        </ul>
+    </p>
+    <br>
+
+    <hr size="2px" color="black" />
+    <p>
+        <strong>Interpretación cuestionario inteligencia emocional:</strong>
+        <ul>
+            <li>
+                <strong>Dimensión atención emocional:</strong> {{ interpretacion_atencion_emocional }}
+            </li>
+            <li>
+                <strong>Dimensión claridad emocional:</strong> {{ interpretacion_claridad_emocional }}
+            </li>
+            <li>
+                <strong>Dimensión reparación emocional:</strong> {{ interpretacion_reparacion_emocional }}
+            </li>
+        </ul>
+    </p>
+    <br>
+
+    <hr size="2px" color="black" />
+    <p>
+        <strong>Interpretación cuestionario medio:</strong>
+        <ul>
+            <li>
+                <strong>Dimensión global del medio:</strong> {{ interpretacion_global_del_medio }}
+            </li>
+            <li>
+                <strong>Subdimensión seguridad física:</strong> {{ interpretacion_seguridad_fisica }}
+            </li>
+            <li>
+                <strong>Subdimensión medio doméstico:</strong> {{ interpretacion_medio_domestico }}
+            </li>
+            <li>
+                <strong>Subdimensión recursos financieros:</strong> {{ interpretacion_recursos_financieros }}
+            </li>
+            <li>
+                <strong>Subdimensión salud y atención social:</strong> {{ interpretacion_salud_y_atencion_social }}
+            </li>
+            <li>
+                <strong>Subdimensión oportunidades entorno:</strong> {{ interpretacion_oportunidades_entorno }}
+            </li>
+            <li>
+                <strong>Subdimensión participación en actividades de ocio:</strong> {{ interpretacion_participacion_actividades_ocio }}
+            </li>
+            <li>
+                <strong>Subdimensión medio físico:</strong> {{ interpretacion_medio_fisico }}
+            </li>
+            <li>
+                <strong>Subdimensión transporte:</strong> {{ interpretacion_transporte }}
+            </li>
+        </ul>
+    </p>
+    <br>
+
+    <hr size="2px" color="black" />
+    <p>
+        <strong>Interpretación cuestionario emociones básicas:</strong> {{ interpretacion_global_emociones_basicas }}
+        <ul>
+            <li>
+                <strong>Alegría:</strong> {{ respuesta_alegria }}
+            </li>
+            <li>
+                <strong>Tristeza:</strong> {{ respuesta_tristeza }}
+            </li>
+            <li>
+                <strong>Miedo:</strong> {{ respuesta_miedo }}
+            </li>
+            <li>
+                <strong>Ira:</strong> {{ respuesta_ira }}
+            </li>
+            <li>
+                <strong>Asco:</strong> {{ respuesta_asco }}
+            </li>
+            <li>
+                <strong>Culpa:</strong> {{ respuesta_culpa }}
+            </li>
+            <li>
+                <strong>Vergüenza:</strong> {{ respuesta_verguenza }}
+            </li>
+            <li>
+                <strong>Interesada:</strong> {{ respuesta_interesada }}
+            </li>
+            <li>
+                <strong>Satisfecha:</strong> {{ respuesta_satisfecha }}
+            </li>
+        </ul>
+    </p>
+</div>
+
+{% endblock %}

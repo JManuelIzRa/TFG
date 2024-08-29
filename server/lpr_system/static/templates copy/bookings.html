@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Combinación de Imágenes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: black;;
+        }
+        .header {
+            background-image: url('./images/alexis-amz-da-cruz-LjC1vn_AonE-unsplash.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 50px 0;
+            position: relative;
+            height: 300px;
+            transition: background-image 1s ease-in-out, background-position 1s ease-in-out;
+        }
+
+
+        /* Estilos de transición */
+        .header.slide-left {
+            background-position: -100% center; /* Mueve la imagen hacia la izquierda */
+        }
+       
+
+
+        .header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6); /* Color negro con 50% de transparencia */
+            z-index: 0;
+        }
+
+
+
+
+        .header {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 300px; /* Mantén la altura que ya tiene */
+            position: relative;
+            text-align: center;
+        }
+
+
+       
+
+
+        .header h1 {
+            font-size: 3em;
+            margin: 0;
+            z-index: 1; /* Asegúrate de que el texto esté por encima de otros elementos */
+            transition: opacity 0.5s ease-out;
+        }
+
+
+        .header p {
+            font-size: 1.2em;
+            z-index: 1; /* Asegúrate de que el texto esté por encima de otros elementos */
+            transition: opacity 0.5s ease-out;
+        }
+
+
+        .header.hidden h1{
+            opacity: 0;
+            visibility: hidden;
+        }
+
+
+        .header.hidden p{
+            opacity: 0;
+            visibility: hidden;
+        }
+
+
+        .search-bar {
+            display: flex;
+            justify-content: center;
+            padding: 10px;
+            width: 80%;
+            background-color: white;
+            border-radius: 25px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: absolute;
+            left: 50%;
+            bottom: -25px;
+            transform: translateX(-50%);
+            z-index: 2;
+            box-shadow: #000;
+            transition: top 5s ease;
+
+
+        }
+       
+
+
+
+
+        .search-bar.fixed {
+            position: fixed;
+            top: 0;
+            height: 50px;
+            margin-top:20px;
+        }
+
+
+        .search-bar input, .search-bar button {
+            padding: 10px;
+            margin: 5px;
+            border-radius: 15px;
+            border: none;
+        }
+        .search-bar input {
+            flex: 1;
+        }
+        .search-bar button {
+            background-color: rgb(238, 238, 186);
+            color: #000;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .content {
+            background-color: #000;
+            color: #fff;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        .content h2 {
+            color: #fff;
+        }
+        .result {
+            display: flex;
+            align-items: center;
+            background-color: #333;
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 10px;
+            position: relative;
+            transition: margin-bot  tom 0.3s ease; /* Añadido para animar el empuje */
+        }
+        .result img {
+            max-width: 200px;
+            border-radius: 10px;
+        }
+
+
+        .result.expanded {
+            margin-top: 10px;
+            margin-bottom: 150px; /* Ajusta según el tamaño del contenedor de opciones */
+        }
+
+
+        .result .info {
+            margin-left: 20px;
+        }
+        .result .info h3 {
+            margin: 0;
+            color: #ffc107;
+        }
+        .result .info p {
+            margin: 5px 0;
+        }
+        .result .info .price {
+            color: #0f0;
+            font-weight: bold;
+        }
+        .result .info .stars {
+            color: #ffc107;
+        }
+        .book-now {
+            background-color: #ff0;
+            color: #000;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+
+        .options-container {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right:0;
+            background-color: #444;
+            padding: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            border-radius: 5px;
+            z-index: 1;
+        }
+
+
+        .options-container.active {
+            display: flex;
+            justify-content: space-around;
+        }
+
+
+        .option {
+            background-color: #555;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            width: 30%;
+        }
+
+
+        .option h4 {
+            margin: 0;
+            color: #ffc107;
+        }
+
+
+        .option p {
+            margin: 5px 0;
+        }
+
+
+        .option .price {
+            color: #0f0;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Obtener la fecha actual en formato YYYY-MM-DD
+            const today = new Date().toISOString().split('T')[0];
+            // Establecer la fecha mínima del input
+            document.getElementById('entrada').setAttribute('min', today);
+            document.getElementById('salida').setAttribute('min', today);
+
+
+            // Manejar el scroll para ocultar el header y fijar la barra de búsqueda
+            window.addEventListener('scroll', function() {
+                const header = document.querySelector('.header');
+                const searchBar = document.querySelector('.search-bar');
+               
+                if (window.scrollY > 60) {
+                    header.classList.add('hidden');
+                }
+                else
+                {
+                    header.classList.remove('hidden');
+                }
+
+
+                if (window.scrollY > 240){
+                    searchBar.classList.add('fixed');
+                }
+                else
+                {
+                    searchBar.classList.remove('fixed');
+                }
+            });
+
+
+            document.querySelectorAll('.book-now').forEach(button => {
+                button.addEventListener('click', function(event) {
+                    // Prevenir el comportamiento por defecto del clic
+                    event.preventDefault();
+
+
+                    const result = this.closest('.result');
+                    const optionsContainer = result.querySelector('.options-container');
+
+
+                    // Si hay un contenedor de opciones activo y no es el actual, ciérralo
+                    document.querySelectorAll('.options-container.active').forEach(container => {
+                        if (container !== optionsContainer) {
+                            container.classList.remove('active');
+                            container.closest('.result').classList.remove('expanded');
+                        }
+                    });
+
+
+                    // Alternar el contenedor de opciones actual
+                    if (optionsContainer.classList.contains('active')) {
+                        optionsContainer.classList.remove('active');
+                        result.classList.remove('expanded');
+                    } else {
+                        optionsContainer.classList.add('active');
+                        result.classList.add('expanded');
+
+
+                        // Ajusta el desplazamiento solo si es necesario
+                        setTimeout(() => {
+                            window.scrollBy({
+                                top: optionsContainer.offsetHeight + 20, // Añadir un pequeño margen para evitar el salto
+                                behavior: 'smooth'
+                            });
+                        }, 300); // Asegúrate de que el retraso coincide con la duración de la transición
+                    }
+                });
+            });
+            // Lista de URLs de imágenes para el fondo
+            const images = [
+                './images/alexis-amz-da-cruz-LjC1vn_AonE-unsplash.jpg',
+                './images/john-matychuk-yvfp5YHWGsc-unsplash.jpg', // Cambia estos URLs a las rutas correctas de tus imágenes
+                './images/raynaldy-dachlan-dpsOTmcfLig-unsplash.jpg'
+            ];
+
+
+           
+
+
+            let currentImageIndex = 0;
+
+
+            function changeBackgroundImage() {
+                const header = document.querySelector('.header');
+
+
+                // Añade la clase para iniciar la transición
+                header.classList.add('slide-left');
+
+
+                currentImageIndex = (currentImageIndex + 1) % images.length;
+                document.querySelector('.header').style.backgroundImage = `url('${images[currentImageIndex]}')`;
+            }
+
+
+            // Cambia la imagen de fondo cada 10 segundos (10000 ms)
+            setInterval(changeBackgroundImage, 20000);
+        });
+    </script>
+
+
+
+
+    <div class="header">
+       
+        <h1>EXPLORE THE WORLD WITH E-PARK<sup>&reg;</sup></h1>
+        <p>Secure your parking today and enjoy stress-free travel!  Budget-friendly parking <br> with 24/7 security and comfort.</p>
+
+
+        <div class="search-bar">
+            <input type="text" placeholder="Localidad" aria-label="Localidad">
+            <input type="date" id="entrada" aria-label="Fecha de entrada">
+            <input type="date" id="salida" aria-label="Fecha de salida">
+            <button type="button">🔍</button>
+        </div>
+    </div>
+    <div class="content">
+        <h2>Search Results</h2>
+        <div class="result">
+            <img src="./images/john-matychuk-yvfp5YHWGsc-unsplash.jpg" alt="Retiro Park Garage">
+            <div class="info">
+                <h3>Retiro Park Garage</h3>
+                <p>Parque del Retiro s/n</p>
+                <p class="price">Desde 2,28€/h</p>
+                <p class="stars">★★★★☆</p>
+                <a href="#" class="book-now">BOOK NOW</a>
+                <div class="options-container">
+                    <div class="option">
+                        <h4>Standard</h4>
+                        <p>Reserva estándar con acceso ilimitado.</p>
+                        <p class="price">Desde 5€/día</p>
+                    </div>
+                    <div class="option">
+                        <h4>VIP</h4>
+                        <p>Acceso preferencial y asistencia personalizada.</p>
+                        <p class="price">Desde 10€/día</p>
+                    </div>
+                    <div class="option">
+                        <h4>Premium</h4>
+                        <p>Espacio reservado y servicios adicionales.</p>
+                        <p class="price">Desde 15€/día</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="result">
+            <img src="./images/john-matychuk-yvfp5YHWGsc-unsplash.jpg" alt="Retiro Park Garage">
+            <div class="info">
+                <h3>Retiro Park Garage</h3>
+                <p>Parque del Retiro s/n</p>
+                <p class="price">Desde 2,28€/h</p>
+                <p class="stars">★★★★☆</p>
+                <a href="#" class="book-now">BOOK NOW</a>
+                <div class="options-container">
+                    <div class="option">
+                        <h4>Standard</h4>
+                        <p>Reserva estándar con acceso ilimitado.</p>
+                        <p class="price">Desde 5€/día</p>
+                    </div>
+                    <div class="option">
+                        <h4>VIP</h4>
+                        <p>Acceso preferencial y asistencia personalizada.</p>
+                        <p class="price">Desde 10€/día</p>
+                    </div>
+                    <div class="option">
+                        <h4>Premium</h4>
+                        <p>Espacio reservado y servicios adicionales.</p>
+                        <p class="price">Desde 15€/día</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="result">
+            <img src="./images/john-matychuk-yvfp5YHWGsc-unsplash.jpg" alt="Retiro Park Garage">
+            <div class="info">
+                <h3>Retiro Park Garage</h3>
+                <p>Parque del Retiro s/n</p>
+                <p class="price">Desde 2,28€/h</p>
+                <p class="stars">★★★★☆</p>
+                <a href="#" class="book-now">BOOK NOW</a>
+                <div class="options-container">
+                    <div class="option">
+                        <h4>Standard</h4>
+                        <p>Reserva estándar con acceso ilimitado.</p>
+                        <p class="price">Desde 5€/día</p>
+                    </div>
+                    <div class="option">
+                        <h4>VIP</h4>
+                        <p>Acceso preferencial y asistencia personalizada.</p>
+                        <p class="price">Desde 10€/día</p>
+                    </div>
+                    <div class="option">
+                        <h4>Premium</h4>
+                        <p>Espacio reservado y servicios adicionales.</p>
+                        <p class="price">Desde 15€/día</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+    </div>
+   
+</body>
+</html>
+<!--Foto de <a href="https://unsplash.com/es/@alexisamz?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Alexis AMZ DA CRUZ</a> en <a href="https://unsplash.com/es/fotos/un-coche-aparcado-frente-a-un-edificio-LjC1vn_AonE?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+Foto de <a href="https://unsplash.com/es/@john_matychuk?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">John Matychuk</a> en <a href="https://unsplash.com/es/fotos/aerial-view-of-cars-parked-on-parking-lot-yvfp5YHWGsc?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+Foto de <a href="https://unsplash.com/es/@rayhands?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Raynaldy Dachlan</a> en <a href="https://unsplash.com/es/fotos/estacionamiento-de-autos-blanco-y-rojo-en-el-estacionamiento-dpsOTmcfLig?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>-->
+ 
+

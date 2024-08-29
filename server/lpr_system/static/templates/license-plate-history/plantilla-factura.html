@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+
+    <title>Factura - {{ plate_number }}</title>
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #fff;
+        }
+        .header, .footer {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .header img {
+            max-width: 150px;
+            margin-bottom: 10px;
+        }
+        .invoice-details {
+            margin-bottom: 20px;
+        }
+        .invoice-details h1 {
+            margin: 0;
+            font-size: 28px;
+            color: #007bff;
+        }
+        .invoice-details p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+        .company-details {
+            text-align: left;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        .company-details p {
+            margin: 3px 0;
+        }
+        .table-container {
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+            font-size: 14px;
+        }
+        th {
+            background-color: #007bff;
+            color: #fff;
+        }
+        tfoot {
+            font-weight: bold;
+            font-size: 16px;
+        }
+        .footer {
+            font-size: 12px;
+            color: #777;
+        }
+        .footer p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Factura</h1>
+        </div>
+
+        <div class="company-details">
+            <p><strong>E-PARK S.A.</strong></p>
+            <p><strong>CIF:</strong> A12345678</p>
+            <p><strong>Dirección:</strong> Calle Falsa 123, 28080 Madrid, España</p>
+            <p><strong>Teléfono:</strong> +34 900 123 456</p>
+            <p><strong>Email:</strong> contacto@e-park.com</p>
+        </div>
+
+        <div class="invoice-details">
+            <p><strong>Placa:</strong> {{ plate_number }}</p>
+            <p><strong>Fecha de entrada:</strong> {{ entry_date }} <strong>Hora de entrada:</strong> {{ entry_time }}</p>
+            <p><strong>Fecha de salida:</strong> {{ exit_date }} <strong>Hora de salida:</strong> {{ exit_time }}</p>
+        </div>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Concepto</th>
+                        <th>Detalle</th>
+                        <th>Importe (sin IVA)</th>
+                        <th>IVA (%)</th>
+                        <th>IVA (€)</th>
+                        <th>Total (€)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Estacionamiento</td>
+                        <td>{{ entry_date }} - {{ exit_date }}</td>
+                        <td>{{ amount_before_tax }} €</td>
+                        <td>{{ tax_rate }}%</td>
+                        <td>{{ tax_amount }} €</td>
+                        <td>{{ total_amount }} €</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="4">Total antes de IVA</td>
+                        <td colspan="2">{{ amount_before_tax }} €</td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">IVA ({{ tax_rate }}%)</td>
+                        <td colspan="2">{{ tax_amount }} €</td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">Total</td>
+                        <td colspan="2">{{ total_amount }} €</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+        <div class="footer">
+            <p>Gracias por usar nuestros servicios.</p>
+            <p>Para cualquier consulta, contacte con nosotros a través del correo electrónico o teléfono proporcionados.</p>
+            <p>&copy; 2024 E-PARK S.A. Todos los derechos reservados.</p>
+        </div>
+    </div>
+</body>
+</html>

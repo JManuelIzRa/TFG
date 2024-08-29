@@ -1,0 +1,818 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-08-28 22:49+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: .\lpr_app\admin.py:23
+msgid "Personal info"
+msgstr ""
+
+#: .\lpr_app\admin.py:24
+msgid "Permissions"
+msgstr ""
+
+#: .\lpr_app\admin.py:25
+msgid "Important dates"
+msgstr ""
+
+#: .\lpr_app\admin.py:26
+msgid "Status"
+msgstr ""
+
+#: .\lpr_app\forms.py:8
+msgid "Password"
+msgstr ""
+
+#: .\lpr_app\forms.py:12
+msgid "Confirm Password"
+msgstr ""
+
+#: .\lpr_app\forms.py:25
+msgid "Las contraseñas no coinciden"
+msgstr "Les mots de passe ne correspondent pas"
+
+#: .\lpr_app\forms.py:43 .\static\templates\signup.html:332
+msgid "Nombre"
+msgstr "Nom"
+
+#: .\lpr_app\forms.py:44
+msgid "Correo electrónico"
+msgstr ""
+
+#: .\lpr_app\forms.py:45
+msgid "Número de teléfono (Opcional)"
+msgstr "Numéro de téléphone (Optionnel)"
+
+#: .\lpr_app\forms.py:46
+msgid "Mensaje"
+msgstr "Message"
+
+#: .\lpr_app\models.py:19
+msgid "Code"
+msgstr ""
+
+#: .\lpr_system\settings.py:140
+msgid "Español"
+msgstr "Espagnol"
+
+#: .\lpr_system\settings.py:141
+msgid "Inglés"
+msgstr "Anglais"
+
+#: .\lpr_system\settings.py:142
+msgid "Francés"
+msgstr ""
+
+#: .\static\templates\book-history\edit_booking.html:292
+#: .\static\templates\book-history\index.html:342
+#: .\static\templates\bookings.html:478 .\static\templates\cams\index.html:206
+#: .\static\templates\contacto.html:221 .\static\templates\index.html:47
+#: .\static\templates\index_staff.html:283
+#: .\static\templates\license-plate-history\index.html:290
+#: .\static\templates\login.html:211 .\static\templates\signup.html:292
+#: .\static\templates\users\index.html:228
+#: .\static\templates\users\modify_user.html:173
+msgid "INICIO"
+msgstr "ACCUEIL"
+
+#: .\static\templates\book-history\edit_booking.html:293
+#: .\static\templates\book-history\index.html:343
+#: .\static\templates\bookings.html:479 .\static\templates\contacto.html:222
+#: .\static\templates\index.html:48 .\static\templates\login.html:212
+#: .\static\templates\signup.html:293
+msgid "RESERVAR"
+msgstr "RÉSERVER"
+
+#: .\static\templates\book-history\edit_booking.html:294
+#: .\static\templates\book-history\index.html:344
+#: .\static\templates\bookings.html:480 .\static\templates\contacto.html:223
+#: .\static\templates\index.html:49 .\static\templates\signup.html:294
+msgid "CONTACTAR"
+msgstr "CONTACTER"
+
+#: .\static\templates\book-history\edit_booking.html:315
+#: .\static\templates\bookings.html:500 .\static\templates\contacto.html:244
+#: .\static\templates\index.html:71
+msgid "Mis Reservas"
+msgstr "Mes Réservations"
+
+#: .\static\templates\book-history\edit_booking.html:319
+#: .\static\templates\book-history\index.html:369
+#: .\static\templates\bookings.html:504 .\static\templates\cams\index.html:233
+#: .\static\templates\contacto.html:248 .\static\templates\index.html:75
+#: .\static\templates\index_staff.html:310
+#: .\static\templates\license-plate-history\index.html:317
+#: .\static\templates\users\index.html:255
+#: .\static\templates\users\modify_user.html:200
+msgid "CERRAR SESIÓN"
+msgstr "DÉCONNECTER"
+
+#: .\static\templates\book-history\edit_booking.html:332
+msgid "MODIFICACIÓN DE RESERVA"
+msgstr ""
+
+#: .\static\templates\book-history\edit_booking.html:341
+#, fuzzy
+#| msgid "FECHA DE ENTRADA"
+msgid "FECHA ENTRADA"
+msgstr "DATE D'ENTRÉE"
+
+#: .\static\templates\book-history\edit_booking.html:349
+#, fuzzy
+#| msgid "FECHA DE SALIDA"
+msgid "FECHA SALIDA"
+msgstr "DATE DE DÉPART"
+
+#: .\static\templates\book-history\edit_booking.html:356
+msgid "MODIFICAR"
+msgstr ""
+
+#: .\static\templates\book-history\edit_booking.html:364
+#: .\static\templates\book-history\index.html:452
+#: .\static\templates\bookings.html:626 .\static\templates\contacto.html:317
+#: .\static\templates\index.html:205 .\static\templates\login.html:269
+#: .\static\templates\signup.html:403
+msgid "No te pierdas nada y suscríbete al boletín de E-PARK:"
+msgstr "Ne manquez rien et abonnez-vous à notre newsletter."
+
+#: .\static\templates\book-history\edit_booking.html:366
+#: .\static\templates\book-history\index.html:454
+#: .\static\templates\bookings.html:628 .\static\templates\contacto.html:319
+#: .\static\templates\index.html:207 .\static\templates\login.html:271
+#: .\static\templates\signup.html:405
+msgid "Introduce tu correo electrónico"
+msgstr "Saisissez votre adresse électronique"
+
+#: .\static\templates\book-history\edit_booking.html:371
+#: .\static\templates\book-history\index.html:459
+#: .\static\templates\bookings.html:633 .\static\templates\contacto.html:324
+#: .\static\templates\index.html:212 .\static\templates\login.html:276
+#: .\static\templates\signup.html:410
+msgid "NOSOTROS"
+msgstr "NOUS"
+
+#: .\static\templates\book-history\edit_booking.html:373
+#: .\static\templates\book-history\index.html:419
+#: .\static\templates\book-history\index.html:461
+#: .\static\templates\bookings.html:635 .\static\templates\contacto.html:326
+#: .\static\templates\index.html:214
+#: .\static\templates\license-plate-history\index.html:392
+#: .\static\templates\login.html:278 .\static\templates\signup.html:412
+#: .\static\templates\users\index.html:311
+msgid "Inicio"
+msgstr "Accueil"
+
+#: .\static\templates\book-history\edit_booking.html:374
+#: .\static\templates\book-history\index.html:462
+#: .\static\templates\bookings.html:636 .\static\templates\contacto.html:327
+#: .\static\templates\index.html:215 .\static\templates\login.html:279
+#: .\static\templates\signup.html:413
+msgid "Acerca de"
+msgstr "A propos"
+
+#: .\static\templates\book-history\edit_booking.html:375
+#: .\static\templates\book-history\index.html:463
+#: .\static\templates\bookings.html:637 .\static\templates\contacto.html:328
+#: .\static\templates\index.html:216 .\static\templates\login.html:280
+#: .\static\templates\signup.html:414
+msgid "Servicios"
+msgstr "Services"
+
+#: .\static\templates\book-history\edit_booking.html:379
+#: .\static\templates\book-history\index.html:467
+#: .\static\templates\bookings.html:641 .\static\templates\contacto.html:332
+#: .\static\templates\index.html:220 .\static\templates\login.html:284
+#: .\static\templates\signup.html:418
+msgid "DOCUMENTACIÓN"
+msgstr "DOCUMENTATION"
+
+#: .\static\templates\book-history\edit_booking.html:381
+#: .\static\templates\book-history\index.html:469
+#: .\static\templates\bookings.html:643 .\static\templates\contacto.html:334
+#: .\static\templates\index.html:222 .\static\templates\login.html:286
+#: .\static\templates\signup.html:420
+msgid "Centro de Ayuda"
+msgstr "Centre d'Aide"
+
+#: .\static\templates\book-history\edit_booking.html:382
+#: .\static\templates\book-history\index.html:470
+#: .\static\templates\bookings.html:644 .\static\templates\contacto.html:261
+#: .\static\templates\contacto.html:335 .\static\templates\index.html:223
+#: .\static\templates\login.html:287 .\static\templates\signup.html:421
+msgid "Contacto"
+msgstr "Contact"
+
+#: .\static\templates\book-history\edit_booking.html:383
+#: .\static\templates\book-history\index.html:471
+#: .\static\templates\bookings.html:645 .\static\templates\contacto.html:336
+#: .\static\templates\index.html:224 .\static\templates\login.html:288
+#: .\static\templates\signup.html:422
+msgid "FAQ"
+msgstr "FAQ"
+
+#: .\static\templates\book-history\edit_booking.html:384
+#: .\static\templates\book-history\index.html:472
+#: .\static\templates\bookings.html:646 .\static\templates\contacto.html:337
+#: .\static\templates\index.html:225 .\static\templates\login.html:289
+#: .\static\templates\signup.html:423
+msgid "Política de Privacidad"
+msgstr "Politique de Confidentialité"
+
+#: .\static\templates\book-history\edit_booking.html:388
+#: .\static\templates\book-history\index.html:476
+#: .\static\templates\bookings.html:650 .\static\templates\contacto.html:341
+#: .\static\templates\index.html:229 .\static\templates\login.html:293
+#: .\static\templates\signup.html:427
+msgid "REDES"
+msgstr "MÉDIAS SOCIAUX"
+
+#: .\static\templates\book-history\edit_booking.html:398
+#: .\static\templates\book-history\index.html:486
+#: .\static\templates\bookings.html:660 .\static\templates\contacto.html:351
+#: .\static\templates\index.html:239 .\static\templates\login.html:303
+#: .\static\templates\signup.html:437
+msgid "© E-PARK. Todos los derechos reservados 2023"
+msgstr "© E-PARK. Tous droits réservés 2023"
+
+#: .\static\templates\book-history\edit_booking.html:399
+#: .\static\templates\book-history\index.html:487
+#: .\static\templates\bookings.html:661 .\static\templates\contacto.html:352
+#: .\static\templates\index.html:240 .\static\templates\login.html:304
+#: .\static\templates\signup.html:438
+msgid "Términos y Condiciones"
+msgstr "Conditions générales d'utilisation"
+
+#: .\static\templates\book-history\index.html:365
+#: .\static\templates\book-history\index.html:377
+#, fuzzy
+#| msgid "RESERVAR"
+msgid "MIS RESERVAS"
+msgstr "RÉSERVER"
+
+#: .\static\templates\book-history\index.html:381
+#: .\static\templates\bookings.html:605
+msgid "¡Su reserva ha sido realizada con éxito!"
+msgstr ""
+
+#: .\static\templates\book-history\index.html:420
+#: .\static\templates\license-plate-history\index.html:393
+#: .\static\templates\users\index.html:312
+msgid "Anterior"
+msgstr ""
+
+#: .\static\templates\book-history\index.html:442
+#: .\static\templates\license-plate-history\index.html:415
+#: .\static\templates\users\index.html:335
+msgid "Siguiente"
+msgstr ""
+
+#: .\static\templates\book-history\index.html:443
+#: .\static\templates\license-plate-history\index.html:416
+#: .\static\templates\users\index.html:336
+msgid "Última"
+msgstr ""
+
+#: .\static\templates\bookings.html:513
+msgid "EXPLORA EL MUNDO CON E-PARK"
+msgstr "EXPLORER LE MONDE AVEC E-PARK"
+
+#: .\static\templates\bookings.html:514
+msgid ""
+"Asegure hoy mismo su aparcamiento y viaje sin estrés.  Aparcamiento económico"
+msgstr ""
+"Réservez votre stationnement dès aujourd'hui et voyagez sans stress. Parking "
+"économique"
+
+#: .\static\templates\bookings.html:514
+msgid " con seguridad y comodidad 24 horas al día, 7 días a la semana"
+msgstr ""
+
+#: .\static\templates\bookings.html:518
+msgid "Localidad"
+msgstr ""
+
+#: .\static\templates\bookings.html:525
+msgid "Resultados de la Búsqueda"
+msgstr "Résultats de la Recherche"
+
+#: .\static\templates\bookings.html:533
+msgid "Desde "
+msgstr ""
+
+#: .\static\templates\bookings.html:535
+msgid "RESERVAR AHORA"
+msgstr "RÉSERVER"
+
+#: .\static\templates\bookings.html:538
+msgid "Ticket Normal"
+msgstr "Ticket Normal"
+
+#: .\static\templates\bookings.html:539
+msgid "10 horas consecutivas o aleatorias de estacionamiento."
+msgstr "10 heures consécutives ou aléatoires de stationnement"
+
+#: .\static\templates\bookings.html:540
+msgid ""
+"Si el vehículo queda dentro del estacionamiento fuera del horario de "
+"apertura, se cobrará un recargo de 1€/hora."
+msgstr ""
+"Si le véhicule reste dans le parking en dehors des heures d'ouverture, un "
+"supplement de 1€/heure sera facturé."
+
+#: .\static\templates\bookings.html:541
+msgid "Desde 10€/día"
+msgstr "À partir de 10€/jour"
+
+#: .\static\templates\bookings.html:549 .\static\templates\bookings.html:565
+#: .\static\templates\bookings.html:581 .\static\templates\bookings.html:595
+msgid "Reservar"
+msgstr "Réserver"
+
+#: .\static\templates\bookings.html:553
+msgid "Ticket de Fin de Semana"
+msgstr "Ticket Week-end"
+
+#: .\static\templates\bookings.html:554 .\static\templates\bookings.html:570
+msgid "Horas de estacionamiento ilimitadas."
+msgstr "Heures de stationnement illimitées."
+
+#: .\static\templates\bookings.html:555
+msgid "Acceso ilimitado durante todo el fin de semana."
+msgstr "Accès illimité tout le week-end."
+
+#: .\static\templates\bookings.html:556 .\static\templates\bookings.html:572
+msgid ""
+"No se permite el acceso o salida del estacionamiento desde el cierre a la "
+"1:00 am hasta la apertura a las 8:45 am."
+msgstr ""
+"Pas d'accès ou de sortie du parking entre la fermeture à 1h00 et l'ouverture "
+"à 8h45."
+
+#: .\static\templates\bookings.html:557
+msgid "Desde 20€/fin de semana"
+msgstr "À partir de 20€/week-end"
+
+#: .\static\templates\bookings.html:569
+msgid "Ticket Mensual"
+msgstr "Ticket Mensuel"
+
+#: .\static\templates\bookings.html:571
+msgid "Acceso ilimitado durante todo el mes."
+msgstr "Accès illimité tout le mois."
+
+#: .\static\templates\bookings.html:573
+msgid "Desde 50€/mes"
+msgstr "À partir de 50€/mois"
+
+#: .\static\templates\bookings.html:585
+msgid "Opción Personalizada"
+msgstr "Option Personnalisée"
+
+#: .\static\templates\bookings.html:586
+msgid "Calcula el precio basado en el tiempo de estacionamiento."
+msgstr "Calculez le prix en fonction du temps de stationnement."
+
+#: .\static\templates\bookings.html:587
+msgid "Desde € según duración"
+msgstr "À partir de € selon la durée"
+
+#: .\static\templates\bookings.html:608
+msgid ""
+"No se han encontrado resultados. Prueba cambiando los parámetros de la "
+"búsqueda."
+msgstr "Aucun résultat trouvé. Essayez de changer les paramètres de recherche."
+
+#: .\static\templates\cams\index.html:207
+#: .\static\templates\index_staff.html:284
+#: .\static\templates\license-plate-history\index.html:291
+#: .\static\templates\users\index.html:229
+#: .\static\templates\users\modify_user.html:174
+msgid "USUARIOS"
+msgstr "USAGERS"
+
+#: .\static\templates\cams\index.html:208
+#: .\static\templates\index_staff.html:285
+#: .\static\templates\license-plate-history\index.html:292
+#: .\static\templates\users\index.html:230
+#: .\static\templates\users\modify_user.html:175
+msgid "REGISTROS"
+msgstr "RECORDS"
+
+#: .\static\templates\cams\index.html:209
+#: .\static\templates\index_staff.html:286
+#: .\static\templates\license-plate-history\index.html:293
+#: .\static\templates\users\index.html:231
+#: .\static\templates\users\modify_user.html:176
+msgid "CÁMARAS"
+msgstr "CAMÉRAS"
+
+#: .\static\templates\cams\index.html:229
+#: .\static\templates\index_staff.html:306
+#: .\static\templates\license-plate-history\index.html:313
+#: .\static\templates\users\index.html:251
+#: .\static\templates\users\modify_user.html:196
+msgid "MI CUENTA"
+msgstr "MON COMPTE"
+
+#: .\static\templates\cams\index.html:247
+msgid "Configuración de la Cámara"
+msgstr "Configuration de la Caméra"
+
+#: .\static\templates\cams\index.html:249
+msgid "Cámara de Salida"
+msgstr "Caméra de Sorti"
+
+#: .\static\templates\cams\index.html:250
+msgid "Cámara de Entrada"
+msgstr "Caméra d'Entrée"
+
+#: .\static\templates\contacto.html:252 .\static\templates\index.html:79
+#: .\static\templates\login.html:233 .\static\templates\login.html:244
+#: .\static\templates\signup.html:314 .\static\templates\signup.html:326
+msgid "Iniciar Sesión"
+msgstr "Se connecter"
+
+#: .\static\templates\contacto.html:253 .\static\templates\index.html:80
+#: .\static\templates\login.html:234 .\static\templates\login.html:245
+#: .\static\templates\signup.html:315 .\static\templates\signup.html:327
+msgid "Registro"
+msgstr "Inscrivez-vous"
+
+#: .\static\templates\contacto.html:262
+msgid ""
+"Estamos aquí para ayudarle con cualquier pregunta o duda que pueda tener. Si "
+"necesita ayuda con una reserva, tiene alguna sugerencia o simplemente quiere "
+"saber más sobre nuestros servicios, nuestro equipo de asistencia está a su "
+"disposición."
+msgstr ""
+"Nous sommes là pour vous aider à répondre à toutes vos questions ou "
+"préoccupations. Si vous avez besoin d'aide pour une réservation, avez une "
+"suggestion ou souhaitez simplement en savoir plus sur nos services, notre "
+"équipe d'assistance est à votre disposition."
+
+#: .\static\templates\contacto.html:265
+msgid "Utiliza las siguientes vías de contacto, o rellena el formulario."
+msgstr ""
+"Veuillez utiliser les méthodes de contact suivantes ou remplir le formulaire."
+
+#: .\static\templates\contacto.html:266
+msgid "Por correo electrónico"
+msgstr "Par e-mail"
+
+#: .\static\templates\contacto.html:268
+msgid "Por redes sociales"
+msgstr "Via les réseaux sociaux"
+
+#: .\static\templates\contacto.html:270
+msgid "Llamando"
+msgstr "Par téléphone"
+
+#: .\static\templates\contacto.html:275 .\static\templates\users\index.html:274
+msgid "NOMBRE"
+msgstr "NOM"
+
+#: .\static\templates\contacto.html:283 .\static\templates\signup.html:356
+msgid "CORREO ELECTRÓNICO"
+msgstr "ADRESSE ÉLECTRONIQUE"
+
+#: .\static\templates\contacto.html:291
+msgid "TELÉFONO"
+msgstr "TÉLÉPHONE"
+
+#: .\static\templates\contacto.html:299
+msgid "MENSAJE"
+msgstr "MESSAGE"
+
+#: .\static\templates\contacto.html:308
+msgid "ENVIAR"
+msgstr "ENVOYER"
+
+#: .\static\templates\index.html:87
+msgid "¡Gracias!"
+msgstr "Merci!"
+
+#: .\static\templates\index.html:89
+msgid ""
+"Su mensaje se ha enviado correctamente. En breve nos pondremos en contacto "
+"con usted."
+msgstr ""
+"Votre message a été envoyé avec succès. Nous vous contacterons dès que "
+"possible."
+
+#: .\static\templates\index.html:99
+msgid "TU AVENTURA EMPIEZA AQUÍ:"
+msgstr "VOTRE AVENTURE COMMENCE ICI:"
+
+#: .\static\templates\index.html:100
+msgid "RESERVA CON FACILIDAD,"
+msgstr "RÉSERVER FACILEMENT,"
+
+#: .\static\templates\index.html:100
+msgid "VIAJA MEJOR"
+msgstr "VOYAGER MIEUX"
+
+#: .\static\templates\index.html:102
+msgid ""
+"Descubre una nueva y sencilla forma de planificar tus viajes. En nuestra "
+"plataforma podrás encontrar las mejores ofertas y reservar con solo unos "
+"clicks - ¡Deja de preocuparte de los detalles y empieza a disfrutar de tus "
+"aventuras ya!"
+msgstr ""
+"Découvrez une nouvelle façon de planifier vos voyages. Sur notre plateforme, "
+"vous pouvez trouver les meilleures offres et réserver en quelques clics. Ne "
+"vous souciez plus des détails et commencez à profiter de vos aventures dès "
+"maintenant !"
+
+#: .\static\templates\index.html:108
+msgid "RESERVA YA"
+msgstr "RÉSERVEZ"
+
+#: .\static\templates\index.html:118
+msgid ""
+"Descubra el futuro de los servicios y las nuevas tecnologías que mejorarán "
+"su experiencia de viaje hoy mismo."
+msgstr ""
+"Découvrez l'avenir des services et des nouvelles technologies qui "
+"amélioreront votre expérience de voyage aujourd'hui."
+
+#: .\static\templates\index.html:130
+msgid ""
+"Explora el mundo con confianza, sabiendo que ofrecemos servicios en "
+"innumerables lugares. Desde concurridos paisajes urbanos a serenas playas y "
+"remotas montañas, ofrecemos opciones en todos los rincones del planeta."
+msgstr ""
+"Explorez le monde en toute confiance, sachant que nous offrons des services "
+"dans une multitude de lieux. Des villes animées aux plages sereines en "
+"passant par les montagnes reculées, nous proposons des options dans tous les "
+"coins du monde."
+
+#: .\static\templates\index.html:140
+msgid ""
+"Únete a los millones de clientes satisfechos que nos han confiado sus planes "
+"de viaje. Nuestra interfaz fácil de usar y nuestro servicio de atención al "
+"cliente garantizan una experiencia de reserva increíble, lo que nos ha "
+"valido excelentes críticas y clientes recurrentes."
+msgstr ""
+"Joignez les millions de clients satisfaits qui nous ont fait confiance pour "
+"leurs plans de voyage. Notre interface intuitive et notre service clientèle "
+"garantissent une expérience de réservation exceptionnelle, ce qui nous a "
+"valu d'excellentes critiques et des clients fidèles."
+
+#: .\static\templates\index.html:150
+msgid ""
+"Nuestro experimentado equipo comprende las necesidades de los viajeros "
+"modernos y actualiza constantemente nuestra oferta para proporcionar las "
+"mejores opciones posibles. Confíe en nuestra experiencia para guiarle en su "
+"próxima gran aventura, garantizando que cada viaje sea memorable."
+msgstr ""
+"Notre équipe expérimentée comprend les besoins des voyageurs modernes et "
+"actualise constamment notre offre pour proposer les meilleures options "
+"possibles. Comptez sur notre expérience pour vous guider dans votre "
+"prochaine grande aventure, en veillant à ce que chaque voyage soit mémorable."
+
+#: .\static\templates\index.html:157
+msgid "Registrate Ahora"
+msgstr "S'inscrire"
+
+#: .\static\templates\index.html:167
+msgid "Usamos las últimas tendencias en tecnología."
+msgstr "Nous utilisons les dernières tendances technologiques."
+
+#: .\static\templates\index.html:173
+msgid "Comunicaciones Seguras"
+msgstr "Communications sécurisées"
+
+#: .\static\templates\index.html:174
+msgid "Utilizamos servidores con servicios de seguridad de alto nivel."
+msgstr ""
+"Nous utilisons des serveurs dotés de services de sécurité de haut niveau."
+
+#: .\static\templates\index.html:180
+msgid "Privacidad"
+msgstr "Confidentialité"
+
+#: .\static\templates\index.html:181
+msgid "Tus datos estarán siempre seguros gracias a la encriptación."
+msgstr "Vos données seront toujours sécurisées grâce au cryptage."
+
+#: .\static\templates\index.html:187
+msgid "Normas y reglamentos"
+msgstr "Règles et règlements"
+
+#: .\static\templates\index.html:188
+msgid ""
+"Utilizamos tecnologías basadas en estándares que se actualizan y mejoran "
+"continuamente para cumplir la normativa."
+msgstr ""
+"Nous utilisons des technologies basées sur des normes qui sont "
+"continuellement mises à jour et améliorées pour se conformer aux "
+"réglementations."
+
+#: .\static\templates\index.html:194
+msgid "Atención personalizada"
+msgstr "Attention personnalisée"
+
+#: .\static\templates\index.html:195
+msgid ""
+"Te ofrecemos una atención totalmente personalizada para resolver cualquier "
+"duda o consulta."
+msgstr ""
+"Nous vous offrons une attention totalement personnalisée pour résoudre tout "
+"doutes ou questions."
+
+#: .\static\templates\index_staff.html:320
+msgid "AFORO"
+msgstr "CAPACITÉ"
+
+#: .\static\templates\index_staff.html:327
+msgid "ACCESOS TOTALES"
+msgstr "NOMBRE TOTAL D'ACCÈS"
+
+#: .\static\templates\index_staff.html:331
+msgid "GANANCIAS (HOY)"
+msgstr "BÉNÉFICES (AUJOURD'HUI)"
+
+#: .\static\templates\index_staff.html:335
+msgid "GANANCIAS (MES)"
+msgstr "BÉNÉFICES (MOIS)"
+
+#: .\static\templates\index_staff.html:339
+msgid "TIEMPO ESTANCIA PROMEDIO"
+msgstr ""
+
+#: .\static\templates\index_staff.html:343
+#, fuzzy
+#| msgid "RESERVA CON FACILIDAD,"
+msgid "RESERVAS REALIZADAS"
+msgstr "RÉSERVER FACILEMENT,"
+
+#: .\static\templates\index_staff.html:349
+msgid "ACTIVIDAD RECIENTE"
+msgstr "ACTIVITÉ RÉCENTE"
+
+#: .\static\templates\index_staff.html:353
+msgid "Hora"
+msgstr "Heure"
+
+#: .\static\templates\index_staff.html:354
+msgid "Nº Matrícula"
+msgstr "Numéro d'enregistrement"
+
+#: .\static\templates\index_staff.html:372
+msgid "VER MÁS"
+msgstr "VOIR PLUS"
+
+#: .\static\templates\license-plate-history\index.html:329
+msgid "REINICIAR FILTROS"
+msgstr "RÉINITIALISER LES FILTRES"
+
+#: .\static\templates\license-plate-history\index.html:333
+msgid "FECHA DE ENTRADA"
+msgstr "DATE D'ENTRÉE"
+
+#: .\static\templates\license-plate-history\index.html:335
+msgid "FECHA DE SALIDA"
+msgstr "DATE DE DÉPART"
+
+#: .\static\templates\license-plate-history\index.html:343
+msgid "Nº MATRÍCULA"
+msgstr "NUMÉRO D'ENREGISTREMENT"
+
+#: .\static\templates\license-plate-history\index.html:344
+msgid "HORA LLEGADA"
+msgstr "HEURE D'ARRIVÉE"
+
+#: .\static\templates\license-plate-history\index.html:345
+msgid "FECHA LLEGADA"
+msgstr "DATE D'ARRIVÉE"
+
+#: .\static\templates\license-plate-history\index.html:346
+msgid "HORA SALIDA"
+msgstr "HEURE DE DÉPART"
+
+#: .\static\templates\license-plate-history\index.html:347
+msgid "FECHA SALIDA DATE"
+msgstr "DATE DE DÉPART"
+
+#: .\static\templates\license-plate-history\index.html:348
+msgid "PRECIO"
+msgstr "PRICE"
+
+#: .\static\templates\license-plate-history\index.html:349
+#: .\static\templates\users\index.html:279
+msgid "ACCIONES"
+msgstr "ACTIONS"
+
+#: .\static\templates\login.html:213
+msgid "CONTACTO"
+msgstr "CONTACT"
+
+#: .\static\templates\login.html:247
+msgid "INICIA SESIÓN EN TU CUENTA"
+msgstr "CONNECTEZ-VOUS À VOTRE COMPTE"
+
+#: .\static\templates\login.html:252
+msgid "Usuario"
+msgstr "Utilisateur"
+
+#: .\static\templates\login.html:255
+msgid "Contraseña"
+msgstr "Mot de passe"
+
+#: .\static\templates\login.html:260
+msgid "¿Has olvidado tu contraseña?"
+msgstr "Vous avez oublié votre mot de passe?"
+
+#: .\static\templates\login.html:261
+msgid "INICIAR SESIÓN"
+msgstr "SE CONNECTER"
+
+#: .\static\templates\signup.html:329
+msgid "CREA TU CUENTA"
+msgstr "CRÉER VOTRE COMPTE"
+
+#: .\static\templates\signup.html:340 .\static\templates\users\index.html:275
+msgid "APELLIDOS"
+msgstr "NOMS DE FAMILLE"
+
+#: .\static\templates\signup.html:348 .\static\templates\users\index.html:276
+msgid "USUARIO"
+msgstr "NOM D'UTILISATEUR"
+
+#: .\static\templates\signup.html:364
+msgid "CONTRASEÑA"
+msgstr "MOT DE PASSE"
+
+#: .\static\templates\signup.html:372
+msgid "REPITE CONTRASEÑA"
+msgstr "RÉPÉTER LE MOT DE PASSE"
+
+#: .\static\templates\signup.html:384
+msgid "DESEO RECIBIR NOTICIAS Y PROMOCIONES."
+msgstr "JE SOUHAITE RECEVOIR DES INFORMATIONS ET DES PROMOTIONS."
+
+#: .\static\templates\signup.html:392
+msgid "ACEPTO LOS "
+msgstr "J'ACCEPTE LES "
+
+#: .\static\templates\signup.html:392
+msgid "TÉRMINOS Y CONDICIONES"
+msgstr "TERMES ET CONDITIONS"
+
+#: .\static\templates\signup.html:395
+msgid "REGISTRAR"
+msgstr "S'INSCRIRE"
+
+#: .\static\templates\users\index.html:266
+msgid "BUSCAR"
+msgstr ""
+
+#: .\static\templates\users\index.html:267
+#, fuzzy
+#| msgid "USUARIO"
+msgid "+NUEVO USUARIO"
+msgstr "NOM D'UTILISATEUR"
+
+#: .\static\templates\users\index.html:277
+msgid "E-MAIL"
+msgstr ""
+
+#: .\static\templates\users\index.html:278
+msgid "ACTIVO"
+msgstr ""
+
+#: .\static\templates\users\modify_user.html:9
+#: .\static\templates\users\modify_user.html:208
+#, fuzzy
+#| msgid "Usuario"
+msgid "Editar Usuario"
+msgstr "Utilisateur"
+
+#: .\static\templates\users\modify_user.html:213
+msgid "Guardar"
+msgstr ""
+
+#: .\static\templates\users\modify_user.html:214
+msgid "Cancelar"
+msgstr ""
+
+#~ msgid "with 24/7 security and comfort."
+#~ msgstr "avec sécurité et confort 24h/24, 7j/7"
+
+#~ msgid "Desde {{ parking.price_per_hour }}€/h"
+#~ msgstr "À partir de {{ parking.price_per_hour }}€/h"

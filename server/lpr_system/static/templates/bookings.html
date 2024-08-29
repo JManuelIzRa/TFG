@@ -1,0 +1,670 @@
+{% load static %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking - E-PARK</title>
+    <link href="{% static '/styles/footer.css' %}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+
+
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: black;;
+        }
+        
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 44px;
+        }
+
+        header {
+            background-color: #000;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header .logo img {
+            width: 50px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 400;
+        }
+
+        nav ul li a.active,
+        nav ul li a:hover {
+            color: #d3ff00;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .auth-buttons a {
+            text-decoration: none;
+            color: #fff;
+            padding: 8px 16px;
+            border: 2px solid #d3ff00;
+            border-radius: 5px;
+            font-weight: 500;
+        }
+
+        .auth-buttons a.signup {
+            background-color: #d3ff00;
+            color: #000;
+            font-weight: 500;
+
+        }
+
+        .auth-buttons a:hover {
+            text-decoration: none;
+            background-color: #d3ff00;
+            color: #000;
+        }
+
+        .auth-buttons a.signup:hover {
+            text-decoration: none;
+            background-color: black;
+            color: #fff;
+            border: 2px solid #d3ff00;
+        }
+
+        .header {
+            background-image: url("{% static '/images/alexis-amz-da-cruz-LjC1vn_AonE-unsplash.jpg' %}");
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 50px 0;
+            position: relative;
+            height: 300px;
+            transition: background-image 1s ease-in-out, background-position 1s ease-in-out;
+            margin-top: 100px;
+        }
+
+
+        /* Estilos de transición */
+        .header.slide-left {
+            background-position: -100% center; /* Mueve la imagen hacia la izquierda */
+        }
+       
+
+
+        .header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6); /* Color negro con 50% de transparencia */
+            z-index: 0;
+        }
+
+
+
+
+        .header {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 300px; /* Mantén la altura que ya tiene */
+            position: relative;
+            text-align: center;
+        }
+
+
+       
+
+
+        .header h1 {
+            font-size: 3em;
+            margin: 0;
+            z-index: 1; /* Asegúrate de que el texto esté por encima de otros elementos */
+            transition: opacity 0.5s ease-out;
+        }
+
+
+        .header p {
+            font-size: 1.2em;
+            z-index: 1; /* Asegúrate de que el texto esté por encima de otros elementos */
+            transition: opacity 0.5s ease-out;
+        }
+
+
+        .header.hidden h1{
+            opacity: 0;
+            visibility: hidden;
+        }
+
+
+        .header.hidden p{
+            opacity: 0;
+            visibility: hidden;
+        }
+
+
+        .search-bar {
+            display: flex;
+            justify-content: center;
+            padding: 10px;
+            width: 80%;
+            background-color: white;
+            border-radius: 25px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: absolute;
+            left: 50%;
+            bottom: -25px;
+            transform: translateX(-50%);
+            z-index: 2;
+            box-shadow: #000;
+            transition: top 5s ease;
+
+
+        }
+       
+
+        .search-bar.fixed {
+            position: fixed;
+            top: 0;
+            height: 50px;
+            margin-top:120px;
+        }
+
+
+        .search-bar input, .search-bar button {
+            padding: 10px;
+            margin: 5px;
+            border-radius: 15px;
+            border: none;
+        }
+        .search-bar input {
+            flex: 1;
+        }
+        .search-bar button {
+            background-color: rgb(238, 238, 186);
+            color: #000;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .content {
+            background-color: #000;
+            color: #fff;
+            padding: 30px;
+            margin-top: 20px;
+        }
+        .content h2 {
+            color: #fff;
+        }
+        .result {
+            display: flex;
+            align-items: center;
+            background-color: #333;
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 10px;
+            position: relative;
+            transition: margin-bot  tom 0.3s ease; /* Añadido para animar el empuje */
+        }
+        .result img {
+            max-width: 200px;
+            border-radius: 10px;
+        }
+
+
+        .result.expanded {
+            margin-top: 10px;
+            margin-bottom: 150px; /* Ajusta según el tamaño del contenedor de opciones */
+        }
+
+
+        .result .info {
+            margin-left: 20px;
+        }
+        .result .info h3 {
+            margin: 0;
+            color: #ffc107;
+        }
+        .result .info p {
+            margin: 5px 0;
+        }
+        .result .info .price {
+            color: #0f0;
+            font-weight: bold;
+        }
+        .result .info .stars {
+            color: #ffc107;
+        }
+        .book-now {
+            background-color: #d3ff00;
+            color: #000;
+            font-weight: 500;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+
+        .book-now:hover {
+            text-decoration: none;
+            background-color: #000;
+            color: #d3ff00;
+        }
+
+        .select-plan {
+            background-color: #d3ff00;
+            color: #000;
+            font-weight: 500;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+
+        .select-plan:hover {
+            text-decoration: none;
+            background-color: #000;
+            color: #d3ff00;
+        }
+
+
+        .options-container {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right:0;
+            background-color: #444;
+            padding: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            border-radius: 5px;
+            z-index: 1;
+        }
+
+
+        .options-container.active {
+            display: flex;
+            justify-content: space-around;
+        }
+
+
+        .option {
+            background-color: #555;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            width: 30%;
+        }
+
+
+        .option h4 {
+            margin: 0;
+            color: #ffc107;
+        }
+
+
+        .option p {
+            margin: 5px 0;
+        }
+
+
+        .option .price {
+            color: #0f0;
+            font-weight: bold;
+        }
+
+        .message {
+            padding: 10px;
+            border: 1px solid #d4edda;
+            border-radius: 5px;
+            background-color: #d4edda;
+            color: #155724;
+            font-style: italic;
+            margin: 20px 0;
+        }
+
+        .logout{
+            background: none;
+            border: none;
+            padding: 0;
+            margin: 0;
+            font: inherit; /* Usa el mismo estilo de fuente del texto circundante */
+            color: inherit; /* Usa el mismo color del texto circundante */
+            cursor: pointer; /* Mantén el cursor como pointer para que se vea clicable */
+        }
+    </style>
+</head>
+<body>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Obtener la fecha actual en formato YYYY-MM-DD
+            const today = new Date().toISOString().split('T')[0];
+            // Establecer la fecha mínima del input
+            document.getElementById('entrada').setAttribute('min', today);
+            document.getElementById('salida').setAttribute('min', today);
+
+
+            // Manejar el scroll para ocultar el header y fijar la barra de búsqueda
+            window.addEventListener('scroll', function() {
+                const header = document.querySelector('.header');
+                const searchBar = document.querySelector('.search-bar');
+               
+                if (window.scrollY > 60) {
+                    header.classList.add('hidden');
+                }
+                else
+                {
+                    header.classList.remove('hidden');
+                }
+
+
+                if (window.scrollY > 240){
+                    searchBar.classList.add('fixed');
+                }
+                else
+                {
+                    searchBar.classList.remove('fixed');
+                }
+            });
+
+
+            document.querySelectorAll('.book-now').forEach(button => {
+                button.addEventListener('click', function(event) {
+                    // Prevenir el comportamiento por defecto del clic
+                    event.preventDefault();
+
+
+                    const result = this.closest('.result');
+                    const optionsContainer = result.querySelector('.options-container');
+
+
+                    // Si hay un contenedor de opciones activo y no es el actual, ciérralo
+                    document.querySelectorAll('.options-container.active').forEach(container => {
+                        if (container !== optionsContainer) {
+                            container.classList.remove('active');
+                            container.closest('.result').classList.remove('expanded');
+                        }
+                    });
+
+
+                    // Alternar el contenedor de opciones actual
+                    if (optionsContainer.classList.contains('active')) {
+                        optionsContainer.classList.remove('active');
+                        result.classList.remove('expanded');
+                    } else {
+                        optionsContainer.classList.add('active');
+                        result.classList.add('expanded');
+
+
+                        // Ajusta el desplazamiento solo si es necesario
+                        setTimeout(() => {
+                            window.scrollBy({
+                                top: optionsContainer.offsetHeight + 20, // Añadir un pequeño margen para evitar el salto
+                                behavior: 'smooth'
+                            });
+                        }, 300); // Asegúrate de que el retraso coincide con la duración de la transición
+                    }
+                });
+            });
+            // Lista de URLs de imágenes para el fondo
+            const images = [
+                "{% static '/images/alexis-amz-da-cruz-LjC1vn_AonE-unsplash.jpg' %}",
+                "{% static '/images/john-matychuk-yvfp5YHWGsc-unsplash.jpg' %}",
+                "{% static '/images/raynaldy-dachlan-dpsOTmcfLig-unsplash.jpg' %}"
+            ];
+
+
+           
+
+
+            let currentImageIndex = 0;
+
+
+            function changeBackgroundImage() {
+                const header = document.querySelector('.header');
+
+
+                // Añade la clase para iniciar la transición
+                header.classList.add('slide-left');
+
+
+                currentImageIndex = (currentImageIndex + 1) % images.length;
+                document.querySelector('.header').style.backgroundImage = `url('${images[currentImageIndex]}')`;
+            }
+
+
+            // Cambia la imagen de fondo cada 10 segundos (10000 ms)
+            setInterval(changeBackgroundImage, 20000);
+        });
+    </script>
+
+
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="{% static '/images/logo.png' %}" alt="E-Park">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="{% url 'home' %}">{% trans "INICIO" %}</a></li>
+                    <li><a href="{% url 'book:book' %}"class="active">{% trans "RESERVAR" %}</a></li>
+                    <li><a href="{% url 'contact' %}">{% trans 'CONTACTAR' %}</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <form action="{% url 'set_language' %}" method="post" style="display: flex; align-items: center;">
+                    {% csrf_token %}
+                    <input name="next" type="hidden" value="{{ redirect_to }}" />
+                    
+                    <button type="submit" name="language" value="es" style="border: none; background: none;">
+                        <img src="{% static 'images/spain.png' %}" style="width:40px; height:40px;" alt="Spanish">
+                    </button>
+                    
+                    <button type="submit" name="language" value="fr" style="border: none; background: none;">
+                        <img src="{% static 'images/france.png' %}" style="width:40px; height:40px;" alt="French">
+                    </button>
+                    
+                    <button type="submit" name="language" value="en" style="border: none; background: none;">
+                        <img src="{% static 'images/united-kingdom.png' %}" style="width:40px; height:40px;" alt="English">
+                    </button>
+                </form>
+                <a href="{% url 'book:manage_reservations' %}" class="login">{% trans "Mis Reservas" %}</a>
+                <a>
+                    <form class="signup" action="{% url 'logout' %}" method="post">
+                    {% csrf_token %}
+                    <button class="logout" type="submit">{% trans "CERRAR SESIÓN" %}</button>
+                    </form>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div class="header">
+       
+        <h1>{% trans "EXPLORA EL MUNDO CON E-PARK" %}<sup>&reg;</sup></h1>
+        <p>{% trans "Asegure hoy mismo su aparcamiento y viaje sin estrés.  Aparcamiento económico" %} <br> {% trans " con seguridad y comodidad 24 horas al día, 7 días a la semana"%}</p>
+
+
+        <form class="search-bar" method="GET" action="{% url 'book:book' %}">
+            <input type="text" name="location" placeholder="{% trans 'Localidad' %}" aria-label="Localidad">
+            <input type="date" name="entry_date" id="entrada" aria-label="Fecha de entrada">
+            <input type="date" name="exit_date" id="salida" aria-label="Fecha de salida">
+            <button type="submit">🔍</button>
+        </div>
+    </div>
+    <div class="content">
+        <h2>{% trans "Resultados de la Búsqueda" %}</h2>
+            {% if parkings %}
+            {% for parking in parkings %}
+            <div class="result">
+                <img src="{% static '/images/john-matychuk-yvfp5YHWGsc-unsplash.jpg' %}" alt="{{ parking.name }}">
+                <div class="info">
+                    <h3>{{ parking.name }}</h3>
+                    <p>{{ parking.location }}</p>
+                    <p class="price">{% trans "Desde " %} {{ parking.price_per_hour }}€/h</p>
+                    <p class="stars">★★★★☆</p>
+                    <a class="book-now">{% trans "RESERVAR AHORA" %}</a>
+                    <div class="options-container">
+                        <div class="option">
+                            <h4>{% trans "Ticket Normal" %}</h4>
+                            <p>{% trans "10 horas consecutivas o aleatorias de estacionamiento." %}</p>
+                            <p>{% trans "Si el vehículo queda dentro del estacionamiento fuera del horario de apertura, se cobrará un recargo de 1€/hora." %}</p>
+                            <p class="price">{% trans "Desde 10€/día" %}</p>
+                            <form action="{% url 'book:make_reservation' %}" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="parking_id" value="{{ parking.id }}">
+                                <input type="hidden" name="vehicle" value="9444JVL">
+                                <input type="hidden" name="entry_date" value="{{ request.GET.entry_date }}">
+                                <input type="hidden" name="exit_date" value="{{ request.GET.exit_date }}">
+                                <input type="hidden" name="price" value="{{ parking.price_per_hour }}">
+                                <button class="select-plan" type="submit">{% trans "Reservar" %}</button>
+                            </form>
+                        </div>
+                        <div class="option">
+                            <h4>{% trans "Ticket de Fin de Semana" %}</h4>
+                            <p>{% trans "Horas de estacionamiento ilimitadas." %}</p>
+                            <p>{% trans "Acceso ilimitado durante todo el fin de semana." %}</p>
+                            <p>{% trans "No se permite el acceso o salida del estacionamiento desde el cierre a la 1:00 am hasta la apertura a las 8:45 am." %}</p>
+                            <p class="price">{% trans "Desde 20€/fin de semana" %}</p>
+                            <form action="{% url 'book:make_reservation' %}" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="parking_id" value="{{ parking.id }}">
+                                <input type="hidden" name="vehicle" value="9444JVL">
+                                <input type="hidden" name="entry_date" value="{{ request.GET.entry_date }}">
+                                <input type="hidden" name="exit_date" value="{{ request.GET.exit_date }}">
+                                <input type="hidden" name="price" value="{{ parking.price_per_hour }}">
+                                <button class="select-plan" type="submit">{% trans "Reservar" %}</button>
+                            </form>
+                        </div>
+                        <div class="option">
+                            <h4>{% trans "Ticket Mensual" %}</h4>
+                            <p>{% trans "Horas de estacionamiento ilimitadas." %}</p>
+                            <p>{% trans "Acceso ilimitado durante todo el mes." %}</p>
+                            <p>{% trans "No se permite el acceso o salida del estacionamiento desde el cierre a la 1:00 am hasta la apertura a las 8:45 am." %}</p>
+                            <p class="price">{% trans "Desde 50€/mes" %}</p>
+                            <form action="{% url 'book:make_reservation' %}" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="parking_id" value="{{ parking.id }}">
+                                <input type="hidden" name="vehicle" value="9444JVL">
+                                <input type="hidden" name="entry_date" value="{{ request.GET.entry_date }}">
+                                <input type="hidden" name="exit_date" value="{{ request.GET.exit_date }}">
+                                <input type="hidden" name="price" value="{{ parking.price_per_hour }}">
+                                <button class="select-plan" type="submit">{% trans "Reservar"%}</button>
+                            </form>
+                        </div>
+                        <div class="option">
+                            <h4>{% trans "Opción Personalizada" %}</h4>
+                            <p>{% trans "Calcula el precio basado en el tiempo de estacionamiento." %}</p>
+                            <p class="price">{% trans "Desde € según duración" %}</p>
+                            <form action="{% url 'book:make_reservation' %}" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="parking_id" value="{{ parking.id }}">
+                                <input type="hidden" name="vehicle" value="9444JVL">
+                                <input type="hidden" name="entry_date" value="{{ request.GET.entry_date }}">
+                                <input type="hidden" name="exit_date" value="{{ request.GET.exit_date }}">
+                                <input type="hidden" name="price" value="{{ parking.price_per_hour }}">
+                                <button class="select-plan" type="submit">{% trans "Reservar"%}</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% else %}
+                {% if request.GET.message == 'success' %}
+                    <div class="message">
+                        {% trans "¡Su reserva ha sido realizada con éxito!" %}
+                    </div>
+                    {% else %}
+                    {% trans "No se han encontrado resultados. Prueba cambiando los parámetros de la búsqueda." %}</p>
+                {% endif %}<p>
+            {% endif %}
+
+
+
+
+
+
+
+            
+            
+        </div>        
+    </div>
+
+    <footer>
+        <div class="column">
+            <h3>E-PARK</h3>
+            <p>{% trans "No te pierdas nada y suscríbete al boletín de E-PARK:" %}</p>
+            <div class="newsletter">
+                <input type="email" placeholder="{% trans 'Introduce tu correo electrónico' %}">
+                <button type="button">➔</button>
+            </div>
+        </div>
+        <div class="column">
+            <h3>{% trans "NOSOTROS" %}</h3>
+            <ul>
+                <li><a href="{% url 'home' %}">{% trans "Inicio" %}</a></li>
+                <li><a href="#">{% trans "Acerca de" %}</a></li>
+                <li><a href="#">{% trans "Servicios" %}</a></li>
+            </ul>
+        </div>
+        <div class="column">
+            <h3>{% trans "DOCUMENTACIÓN" %}</h3>
+            <ul>
+                <li><a href="#">{% trans "Centro de Ayuda" %}</a></li>
+                <li><a href="#">{% trans "Contacto" %}</a></li>
+                <li><a href="#">{% trans "FAQ" %}</a></li>
+                <li><a href="#">{% trans "Política de Privacidad" %}</a></li>
+            </ul>
+        </div>
+        <div class="column">
+            <h3>{% trans "REDES" %}</h3>
+            <ul>
+                <li><a href="#">Facebook</a></li>
+                <li><a href="#">Instagram</a></li>
+                <li><a href="#">Youtube</a></li>
+                <li><a href="#">Twitter</a></li>
+            </ul>
+        </div>
+    </footer>
+    <div class="copy">
+        {% trans "© E-PARK. Todos los derechos reservados 2023" %}<br>
+        <a href="#">{% trans "Términos y Condiciones" %}</a>
+    </div>
+
+</body>
+</html>
+<!--Foto de <a href="https://unsplash.com/es/@alexisamz?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Alexis AMZ DA CRUZ</a> en <a href="https://unsplash.com/es/fotos/un-coche-aparcado-frente-a-un-edificio-LjC1vn_AonE?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+Foto de <a href="https://unsplash.com/es/@john_matychuk?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">John Matychuk</a> en <a href="https://unsplash.com/es/fotos/aerial-view-of-cars-parked-on-parking-lot-yvfp5YHWGsc?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+Foto de <a href="https://unsplash.com/es/@rayhands?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Raynaldy Dachlan</a> en <a href="https://unsplash.com/es/fotos/estacionamiento-de-autos-blanco-y-rojo-en-el-estacionamiento-dpsOTmcfLig?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>-->
+ 
+

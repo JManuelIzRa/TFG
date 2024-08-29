@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+        }
+    </style>
+    
+    <title>Confirmación de Reserva</title>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Header Section -->
+        <header class="header">
+            <h1>Confirmación de Reserva</h1>
+        </header>
+
+        <!-- Main Content Section -->
+        <main class="content">
+            <div class="reservation-details">
+                <h2>Detalles de la Reserva</h2>
+                <p><strong>Usuario:</strong> {{ username }}</p>
+                <p><strong>Estacionamiento:</strong> {{ parking_name }}</p>
+                <p><strong>Ubicación:</strong> {{ parking_location }}</p>
+                <p><strong>Vehículo:</strong> {{ vehicle }}</p>
+                <p><strong>Fecha de Entrada:</strong> {{ entry_date }}</p>
+                <p><strong>Fecha de Salida:</strong> {{ exit_date }}</p>
+                <p><strong>Precio Total:</strong> ${{ price }}</p>
+            </div>
+        </main>
+
+        <!-- Footer Section -->
+        <footer class="footer">
+            <p>&copy; 2024 E-Park. Todos los derechos reservados.</p>
+        </footer>
+    </div>
+
+</body>
+</html>

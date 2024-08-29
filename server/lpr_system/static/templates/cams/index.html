@@ -1,0 +1,468 @@
+{% load static %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cámaras de Seguridad</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #000;
+        }
+        .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 44px;
+}
+
+        header {
+            background-color: #000;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header .logo img {
+            width: 50px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 400;
+        }
+
+        nav ul li a.active,
+        nav ul li a:hover {
+            color: #d3ff00;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .auth-buttons a {
+            text-decoration: none;
+            color: #fff;
+            padding: 8px 16px;
+            border: 2px solid #d3ff00;
+            border-radius: 5px;
+            font-weight: 500;
+        }
+
+        .auth-buttons a.signup {
+            background-color: #d3ff00;
+            color: #000;
+            font-weight: 500;
+
+        }
+
+        .auth-buttons a:hover {
+            text-decoration: none;
+            background-color: #d3ff00;
+            color: #000;
+        }
+
+        .auth-buttons a.signup:hover {
+            text-decoration: none;
+            background-color: black;
+            color: #fff;
+            border: 2px solid #d3ff00;
+        }
+
+        .logout{
+            background: none;
+            border: none;
+            padding: 0;
+            margin: 0;
+            font: inherit; /* Usa el mismo estilo de fuente del texto circundante */
+            color: inherit; /* Usa el mismo color del texto circundante */
+            cursor: pointer; /* Mantén el cursor como pointer para que se vea clicable */
+        }
+
+        .camContainer {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 120px;
+            width: 98%;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+        }
+        .camera {
+            position: relative;
+            margin: 10px;
+            box-sizing: border-box;
+            background-color: #222;
+            overflow: hidden;
+        }
+        .camera img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .caption {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 5px;
+            border-radius: 3px;
+            font-size: 14px;
+        }
+        .settings-icon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            background-image: url('https://img.icons8.com/material-outlined/24/ffffff/settings.png'); /* Icono de tuerca */
+            background-size: cover;
+        }
+
+        /* Estilos para el modal */
+        .modal {
+            display: none; /* Oculto por defecto */
+            position: fixed;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+            color: white;
+        }
+        .modal-content select {
+            margin-bottom: 20px;
+            padding: 10px;
+            width: 100%;
+            font-size: 16px;
+        }
+        .modal-content button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+        .modal-content button:hover {
+            background-color: #45a049;
+        }
+
+        /* Media Query para resoluciones bajas */
+        @media (max-width: 768px) {
+            .camera {
+                width: calc(100% - 20px);
+                height: auto;  /* Ajusta la altura automáticamente */
+            }
+            .container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="{% static '/images/logo.png' %}" alt="E-Park">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="{% url 'staff-home' %}">{% trans "INICIO" %}</a></li>
+                    <li><a href="{% url 'users:users' %}">{% trans "USUARIOS" %}</a></li>
+                    <li><a href="{% url 'license_plate:license_plate' %}">{% trans "REGISTROS" %}</a></li>
+                    <li><a href="{% url 'cams:cams' %}" class="active">{% trans "CÁMARAS" %}</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <form action="{% url 'set_language' %}" method="post" style="display: flex; align-items: center;">
+                    {% csrf_token %}
+                    <input name="next" type="hidden" value="{{ redirect_to }}" />
+                    
+                    <button type="submit" name="language" value="es" style="border: none; background: none;">
+                        <img src="{% static 'images/spain.png' %}" style="width:40px; height:40px;" alt="Spanish">
+                    </button>
+                    
+                    <button type="submit" name="language" value="fr" style="border: none; background: none;">
+                        <img src="{% static 'images/france.png' %}" style="width:40px; height:40px;" alt="French">
+                    </button>
+                    
+                    <button type="submit" name="language" value="en" style="border: none; background: none;">
+                        <img src="{% static 'images/united-kingdom.png' %}" style="width:40px; height:40px;" alt="English">
+                    </button>
+                </form>
+                <a href="#">{% trans "MI CUENTA" %}</a>
+                <a>
+                    <form class="signup" action="{% url 'logout' %}" method="post">
+                    {% csrf_token %}
+                    <button class="logout" type="submit">{% trans "CERRAR SESIÓN" %}</button>
+                    </form>
+                </a>
+            </div>
+        </div>
+    </header>
+
+<div class="camContainer" id="cameraContainer">
+    <!-- Las imágenes de las cámaras se añadirán aquí dinámicamente -->
+</div>
+
+<!-- Modal -->
+<div class="modal" id="settingsModal">
+    <div class="modal-content">
+        <h2 id="modalTitle">{% trans "Configuración de la Cámara"%}</h2>
+        <select id="cameraSetting">
+            <option value="option1">{% trans "Cámara de Salida"%}</option>
+            <option value="option2">{% trans "Cámara de Entrada"%}</option>
+        </select>
+        <button onclick="sendSettings()">Send</button>
+    </div>
+</div>
+
+<script>
+    fetch('/cams/api/active-cameras/')
+    .then(response => response.json())
+    .then(cameras => {
+        var container = document.getElementById('cameraContainer');
+        container.innerHTML = '';  // Limpia cualquier contenido previo
+
+        let width, height;
+        
+        var numeroDeCamaras = cameras.length;
+
+        switch (numeroDeCamaras) {
+        case 1:
+            width = 'calc(100% - 20px)';
+            height = 'calc(100% - 20px)';
+            break;
+        case 2:
+            width = 'calc(50% - 20px)';
+            height = 'calc(100% - 20px)';
+            break;
+        case 3:
+            width = 'calc(50% - 20px)';
+            height = 'calc(50% - 20px)';  // Dos en la primera fila y el último en la segunda fila
+            break;
+        case 4:
+            width = 'calc(50% - 20px)';
+            height = 'calc(50% - 20px)';
+            break;
+        default:
+            width = 'calc(33.33% - 20px)';  // Para más de 4 cámaras, tres por fila
+            height = 'calc(33.33% - 20px)';
+            break;
+        }
+
+        var i = 0;
+
+        cameras.forEach(function(camera) {
+            var cameraId = camera.id;
+            
+            // Crear un contenedor para cada cámara
+            var cameraContainer = document.createElement('div');
+            cameraContainer.className = 'camera';
+            cameraContainer.id = 'camera-' + cameraId;
+            cameraContainer.style.width = width;
+            cameraContainer.style.height = height;
+            
+            // Crear una imagen para mostrar el feed
+            var cameraImage = document.createElement('img');
+            cameraImage.id = 'camera-image-' + cameraId;
+            cameraImage.alt = 'Camera '+ cameraId;
+            cameraContainer.appendChild(cameraImage);
+
+            const caption = document.createElement('div');
+            caption.className = 'caption';
+            caption.innerText = 'Camera '+ cameraId;
+            cameraContainer.appendChild(caption);
+
+            const settingsIcon = document.createElement('div');
+            settingsIcon.className = 'settings-icon';
+            settingsIcon.onclick = function() {
+                openSettingsModal(cameraId, camera.ip_address);
+            };
+            cameraContainer.appendChild(settingsIcon);
+
+
+            // Agregar el contenedor al feed de cámaras
+            container.appendChild(cameraContainer);
+
+            if (cameras.length === 3 && i === 3) {
+                const lastCameraDiv = container.lastElementChild;
+                lastCameraDiv.style.width = 'calc(100% - 20px)';
+                lastCameraDiv.style.height = 'calc(50% - 20px)';
+            }
+
+            i = i+1;
+
+            function updateImages() {
+            
+                const img = document.getElementById(`camera-image-${cameraId}`);
+
+                // Obtén la fecha y hora actual
+                let currentTime = new Date();
+
+                // Resta dos segundos
+                currentTime.setSeconds(currentTime.getSeconds() - 2);
+
+                // Formatea la nueva fecha y hora en el formato deseado (YYYYMMDDHHMMSSmmm)
+                let formattedTime = currentTime.getFullYear() +
+                    ('0' + (currentTime.getMonth() + 1)).slice(-2) +
+                    ('0' + currentTime.getDate()).slice(-2) +
+                    ('0' + currentTime.getHours()).slice(-2) +
+                    ('0' + currentTime.getMinutes()).slice(-2) +
+                    ('0' + currentTime.getSeconds()).slice(-2);
+            
+                /*img.src = '/cams/api/get_frame/' + formattedTime + '/?';  // Prevent caching*/
+                
+                // Establece la URL de la imagen
+                const imageUrl = '/cams/api/get_frame/' + formattedTime + '/';
+
+                // Función para manejar el evento de error al cargar la imagen
+                img.onerror = function() {
+                    img.src = '/cams/api/get_frame_no_signal/';  // Ruta a la imagen por defecto
+                };
+
+                // Actualiza la fuente de la imagen
+                img.src = imageUrl + '?';  // Prevent caching
+            }
+
+            setInterval(updateImages, 100);  // Update every 100 ms (adjust as necessary)
+
+
+            // Notificar al servidor que el usuario ha accedido a la sección de cámaras
+            fetch('http://'+camera.ip_address+':8001/start-sending-frames', {
+                method: 'GET'
+            });
+
+            window.addEventListener('beforeunload', function (event) {
+            // Construye la URL
+            const url = 'http://' + camera.ip_address + ':8001/stop-sending-images';
+            
+            // Envía la solicitud beacon al servidor
+            const beaconSent = navigator.sendBeacon(url);
+
+            // Añade un log para verificar si el beacon se envió
+            console.log('beforeunload event fired', beaconSent ? 'Beacon sent' : 'Beacon not sent');
+        });
+        });
+    });
+
+    let currentCameraIp = '';
+
+    function openSettingsModal(cameraNumber, cameraIp) {
+        const modal = document.getElementById('settingsModal');
+        const modalTitle = document.getElementById('modalTitle');
+        modalTitle.innerText = `Camera ${cameraNumber} configuration`;
+        modal.style.display = 'flex';
+
+        currentCameraIp = cameraIp;
+        // Puedes usar cameraNumber para personalizar el modal para una cámara específica
+    }
+
+    function sendSettings() {
+        const setting = document.getElementById('cameraSetting').value;
+
+        console.log(`Opción seleccionada: ${setting}`);
+
+        if (setting === 'option1') {
+            if (!currentCameraIp) {
+                console.error('No camera IP specified.');
+                return;
+            }
+            
+            const url = `http://${currentCameraIp}:8001/configurate-camera/exit`;
+
+            // Realiza la petición fetch
+            fetch(url, {
+                method: 'GET'
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.text(); // O usa response.json() si esperas una respuesta JSON
+            })
+            .then(data => {
+                console.log('Request succeeded with JSON response', data);
+                // Aquí puedes manejar la respuesta, si es necesario
+            })
+            .catch(error => {
+                console.error('Request failed', error);
+            });
+        } else {
+            if (!currentCameraIp) {
+                console.error('No camera IP specified.');
+                return;
+            }
+            
+            const url = `http://${currentCameraIp}:8001/configurate-camera/entry`;
+
+            // Realiza la petición fetch
+            fetch(url, {
+                method: 'GET'
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.text(); // O usa response.json() si esperas una respuesta JSON
+            })
+            .then(data => {
+                console.log('Request succeeded with JSON response', data);
+                // Aquí puedes manejar la respuesta, si es necesario
+            })
+            .catch(error => {
+                console.error('Request failed', error);
+            });
+        }
+        
+        closeSettingsModal();
+    }
+
+    function closeSettingsModal() {
+        const modal = document.getElementById('settingsModal');
+        modal.style.display = 'none';
+    }
+
+    // Ejemplo: Llamar a la función con el número de cámaras a mostrar
+    //const numeroDeCamaras = 4;  // Cambia esto para probar diferentes cantidades de cámaras
+    //createCameraElements(numeroDeCamaras);
+</script>
+
+</body>
+</html>

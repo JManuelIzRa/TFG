@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Registros{% endblock %}
+
+{% block content %}
+
+    <h1>Real-Time Camera Feed</h1>
+    <div id="cameras">
+        <!-- Aquí puedes renderizar las cámaras si necesitas -->
+        {% for camera in cameras %}
+            <div class="camera" data-ip="{{ camera.ip }}" data-id="{{ camera.id }}">
+                Camera {{ camera.id }}
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="camera-feed" id="camera-feed">
+        <!-- Aquí se agregarán dinámicamente las cámaras -->
+    </div>
+
+    <script>
+        fetch('/cams/api/active-cameras/')
+            .then(response => response.json())
+            .then(cameras => {
+                var cameraFeed = document.getElementById('camera-feed');
+
+                var numeroDeCamaras = length(cameras);
+
+                createCameraElements(numeroDeCamaras);
+
+                cameras.forEach(function(camera) {
+                    var cameraId = camera.id;
+                    
+                    // Crear un contenedor para cada cámara
+                    var cameraContainer = document.createElement('div');
+                    cameraContainer.className = 'camera';
+                    cameraContainer.id = 'camera-' + cameraId;
+                    
+                    // Crear un título para la cámara
+                    var cameraTitle = document.createElement('h2');
+                    cameraTitle.innerText = 'Camera ' + cameraId;
+                    cameraContainer.appendChild(cameraTitle);
+                    
+                    // Crear una imagen para mostrar el feed
+                    var cameraImage = document.createElement('img');
+                    cameraImage.id = 'camera-image-' + cameraId;
+                    cameraContainer.appendChild(cameraImage);
+
+                    // Agregar el contenedor al feed de cámaras
+                    cameraFeed.appendChild(cameraContainer);
+
+                    
+                    function updateImages() {
+                    
+                        const img = document.getElementById(`camera-image-${cameraId}`);
+
+                        // Obtén la fecha y hora actual
+                        let currentTime = new Date();
+
+                        // Resta dos segundos
+                        currentTime.setSeconds(currentTime.getSeconds() - 2);
+
+                        // Formatea la nueva fecha y hora en el formato deseado (YYYYMMDDHHMMSSmmm)
+                        let formattedTime = currentTime.getFullYear() +
+                            ('0' + (currentTime.getMonth() + 1)).slice(-2) +
+                            ('0' + currentTime.getDate()).slice(-2) +
+                            ('0' + currentTime.getHours()).slice(-2) +
+                            ('0' + currentTime.getMinutes()).slice(-2) +
+                            ('0' + currentTime.getSeconds()).slice(-2);
+                    
+                        /*img.src = '/cams/api/get_frame/' + formattedTime + '/?';  // Prevent caching*/
+                        
+                        // Establece la URL de la imagen
+                        const imageUrl = '/cams/api/get_frame/' + formattedTime + '/';
+
+                        // Función para manejar el evento de error al cargar la imagen
+                        img.onerror = function() {
+                            img.src = '/cams/api/get_frame_no_signal/';  // Ruta a la imagen por defecto
+                        };
+
+                        // Actualiza la fuente de la imagen
+                        img.src = imageUrl + '?';  // Prevent caching
+                    }
+
+                    setInterval(updateImages, 100);  // Update every 100 ms (adjust as necessary)
+
+
+                    // Notificar al servidor que el usuario ha accedido a la sección de cámaras
+                    fetch('http://'+camera.ip_address+':8001/start-sending-frames', {
+                        method: 'GET'
+                    });
+
+                    window.addEventListener('beforeunload', function (event) {
+                    // Construye la URL
+                    const url = 'http://' + camera.ip_address + ':8001/stop-sending-images';
+                    
+                    // Envía la solicitud beacon al servidor
+                    const beaconSent = navigator.sendBeacon(url);
+
+                    // Añade un log para verificar si el beacon se envió
+                    console.log('beforeunload event fired', beaconSent ? 'Beacon sent' : 'Beacon not sent');
+                });
+                });
+            });
+    </script>
+
+{% endblock %}

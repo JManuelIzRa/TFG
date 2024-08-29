@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load pagination_tags %}
+{% block title %}Usuarios{% endblock %}
+
+{% block content %}
+<p class="text-right">
+    <a href="{% url 'users:add-patient' %}">Crear Cliente</a> | <a href="{% url 'users:add-user' %}">Crear Administrador</a> | <a href="?user=patient">Ver Clientes</a> | <a href="?user=admin">Ver Administradores</a> | <a href=".">Ver todos</a>
+</p>
+<form method='GET' action=''>
+<div class="form-row">
+    <div class="col">
+      <input type="text" class="form-control" placeholder="Nombre" name='firstname'>
+    </div>
+    <div class="col">
+      <input type="text" class="form-control" placeholder="Apellidos" name='secondname'>
+    </div>
+    <div class="col">
+      <input type="text" class="form-control" placeholder="Código" name='username'>
+    </div>
+    <div class="col">
+      <input type="submit" class="form-control btn btn-info" value='Buscar'>
+    </div>
+  </div>
+<input type='hidden'name='user' value='{{ request.GET.user }}'>
+</form>
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>Usuario</th>
+                <th>Correo Electrónico</th>
+                <th>Activo</th>
+                <th>Operaciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in object_list %}
+                <tr>
+                    <td>{{ user.firstname }}</td>
+                    <td>{{ user.secondname }}</td>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{% if user.is_active %} <span class="oi oi-check" title="icon name" aria-hidden="true"></span>{% else %} <span class="oi oi-x" aria-hidden="true"></span>{% endif %}</td>
+                    <td><a href="{% url 'users:edit-user' user.pk %}">Editar</a> | {% if user.is_active %}<a href="{% url 'users:disable-person' user.pk %}">Desactivar</a>{% else %}<a href="{% url 'users:disable-person' user.pk %}">Activar</a>{% endif %} | <a href="{% url 'users:delete-person' pk=user.pk %}">Eliminar</a> | <a href="">Ver Registros</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% autopaginate page_obj 10 %}
+{% endblock %}

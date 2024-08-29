@@ -1,0 +1,266 @@
+{% load static %}
+
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Park</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link href="{% static '/styles/styles_updated.css' %}" rel="stylesheet">
+    <link href="{% static '/styles/footer.css' %}" rel="stylesheet">
+
+    <style>
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 140px;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("{% static '/images/car.png' %}") no-repeat right center/cover;
+            background-size: contain; /* Ajusta el tamaño de la imagen */
+            background-position: right;
+            height: 100vh;
+            position: relative;
+        }
+
+        .logout{
+            background: none;
+            border: none;
+            padding: 0;
+            margin: 0;
+            font: inherit; /* Usa el mismo estilo de fuente del texto circundante */
+            color: inherit; /* Usa el mismo color del texto circundante */
+            cursor: pointer; /* Mantén el cursor como pointer para que se vea clicable */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="{% static '/images/logo.png' %}" alt="E-Park">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="{% url 'home' %}" class="active">{% trans "INICIO" %}</a></li>
+                    <li><a href="{% url 'book:book' %}">{% trans "RESERVAR" %}</a></li>
+                    <li><a href="{% url 'contact' %}">{% trans 'CONTACTAR' %}</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <form action="{% url 'set_language' %}" method="post" style="display: flex; align-items: center;">
+                    {% csrf_token %}
+                    <input name="next" type="hidden" value="{{ redirect_to }}" />
+                    
+                    <button type="submit" name="language" value="es" style="border: none; background: none;">
+                        <img src="{% static 'images/spain.png' %}" style="width:40px; height:40px;" alt="Spanish">
+                    </button>
+                    
+                    <button type="submit" name="language" value="fr" style="border: none; background: none;">
+                        <img src="{% static 'images/france.png' %}" style="width:40px; height:40px;" alt="French">
+                    </button>
+                    
+                    <button type="submit" name="language" value="en" style="border: none; background: none;">
+                        <img src="{% static 'images/united-kingdom.png' %}" style="width:40px; height:40px;" alt="English">
+                    </button>
+                </form>
+
+                {% if user.is_authenticated %}
+                    <a href="{% url 'book:manage_reservations' %}" class="login">{% trans "Mis Reservas" %}</a>
+                    <a>
+                        <form class="signup" action="{% url 'logout' %}" method="post">
+                        {% csrf_token %}
+                        <button class="logout" type="submit">{% trans "CERRAR SESIÓN" %}</button>
+                        </form>
+                    </a>
+                {% else %}
+                    <a href="{% url 'login' %}" class="login">{% trans "Iniciar Sesión" %}</a>
+                    <a href="{% url 'signup' %}" class="signup">{% trans "Registro" %}</a>
+                {% endif %}
+            </div>
+        </div>
+    </header>
+
+    {% if request.session.contact_success %}
+        <h1>{% trans "¡Gracias!" %}</h1>
+        <p>
+            {% blocktrans trimmed  %}
+            Su mensaje se ha enviado correctamente. En breve nos pondremos en contacto con usted.
+            {% endblocktrans %}
+        </p>
+       
+    {% endif %}
+
+    <section class="hero">
+        <div class="hero-content reveal active">
+            <div class="hero-text">
+                <h2>{% trans "TU AVENTURA EMPIEZA AQUÍ:" %}</h2>
+                <h1>{% trans "RESERVA CON FACILIDAD," %}<br>{% trans "VIAJA MEJOR" %}</h1>
+                <p>
+                    {% blocktrans trimmed  %}
+                        Descubre una nueva y sencilla forma de planificar tus viajes. 
+                        En nuestra plataforma podrás encontrar las mejores ofertas y reservar con 
+                        solo unos clicks - ¡Deja de preocuparte de los detalles y empieza a disfrutar de tus aventuras ya!
+                    {% endblocktrans %}
+                </p>
+                <a href="{% url 'book:book' %}" class="btn">{% trans "RESERVA YA" %}</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="info-section" id="info-section">
+        <div class="info-content reveal">
+            <div class="quote">
+                <div class="quote-icon">“</div>
+                <p>
+                    {% blocktrans trimmed  %}
+                        Descubra el futuro de los servicios y las nuevas tecnologías que mejorarán su experiencia de viaje hoy mismo.
+                    {% endblocktrans %}
+                </p>
+                <div class="quote-icon">”</div>
+            </div>
+            <div class="info-cards">
+                <div class="info-card">
+                    <div class="icon-text">
+                        <img class="car-img" src="{% static '/images/car-icon.png' %}" alt="Car Icon">
+                        <span>52</span>
+                    </div>
+                    <p>{% blocktrans trimmed  %}
+                            Explora el mundo con confianza, sabiendo que ofrecemos servicios en innumerables lugares. Desde concurridos paisajes urbanos a serenas playas y remotas montañas, ofrecemos opciones en todos los rincones del planeta.
+                        {% endblocktrans %}</p>
+                </div>
+                <div class="info-card">
+                    <div class="icon-text">
+                        <img class="users-img" src="{% static '/images/users-icon.png' %}" alt="Users Icon">
+                        <span>2.5M</span>
+                    </div>
+                    <p>
+                        {% blocktrans trimmed  %}
+                            Únete a los millones de clientes satisfechos que nos han confiado sus planes de viaje. Nuestra interfaz fácil de usar y nuestro servicio de atención al cliente garantizan una experiencia de reserva increíble, lo que nos ha valido excelentes críticas y clientes recurrentes.
+                        {% endblocktrans %}
+                        </p>
+                </div>
+                <div class="info-card">
+                    <div class="icon-text">
+                        <img class="sales-img" src="{% static 'images/sales-icon.png' %}" alt="Sales Icon">
+                    </div>
+                    <p>
+                        {% blocktrans trimmed  %}
+                            Nuestro experimentado equipo comprende las necesidades de los viajeros modernos y actualiza constantemente nuestra oferta para proporcionar las mejores opciones posibles. Confíe en nuestra experiencia para guiarle en su próxima gran aventura, garantizando que cada viaje sea memorable.
+                        {% endblocktrans %} 
+                    </p>
+                </div>
+            </div>
+            <div class="cta-button">
+                <a href="{% url 'signup' %}" class="btn">{% trans "Registrate Ahora" %}</a>
+            </div>
+        </div>
+        
+    </section>
+
+    <section class="technologies-section ">
+        <div class="technologies-content reveal">
+
+            <div class="left">
+                <h1>{% trans "Usamos las últimas tendencias en tecnología." %}</h1>
+            </div>
+            <div class="right">
+                <div class="info-card-tech">
+                    <img src="{% static '/images/star-icon.png' %}" alt="Secure Communications Icon">
+                    <div class="text">
+                        <h2>{% trans "Comunicaciones Seguras" %}</h2>
+                        <p>{% trans "Utilizamos servidores con servicios de seguridad de alto nivel." %}</p>
+                    </div>
+                </div>
+                <div class="info-card-tech">
+                    <img src="{% static '/images/privacy-icon.png' %}" alt="Privacy Icon">
+                    <div class="text">
+                        <h2>{% trans "Privacidad" %}</h2>
+                        <p>{% trans "Tus datos estarán siempre seguros gracias a la encriptación." %}</p>
+                    </div>
+                </div>
+                <div class="info-card-tech">
+                    <img src="{% static '/images/standards-icon.png' %}" alt="Standards and Regulations Icon">
+                    <div class="text">
+                        <h2>{% trans "Normas y reglamentos" %}</h2>
+                        <p>{% trans "Utilizamos tecnologías basadas en estándares que se actualizan y mejoran continuamente para cumplir la normativa." %}</p>
+                    </div>
+                </div>
+                <div class="info-card-tech">
+                    <img src="{% static '/images/attention-icon.png' %}" alt="Personalized Attention Icon">
+                    <div class="text">
+                        <h2>{% trans "Atención personalizada" %}</h2>
+                        <p>{% trans "Te ofrecemos una atención totalmente personalizada para resolver cualquier duda o consulta." %}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="column">
+            <h3>E-PARK</h3>
+            <p>{% trans "No te pierdas nada y suscríbete al boletín de E-PARK:" %}</p>
+            <div class="newsletter">
+                <input type="email" placeholder="{% trans 'Introduce tu correo electrónico' %}">
+                <button type="button">➔</button>
+            </div>
+        </div>
+        <div class="column">
+            <h3>{% trans "NOSOTROS" %}</h3>
+            <ul>
+                <li><a href="{% url 'home' %}">{% trans "Inicio" %}</a></li>
+                <li><a href="#">{% trans "Acerca de" %}</a></li>
+                <li><a href="#">{% trans "Servicios" %}</a></li>
+            </ul>
+        </div>
+        <div class="column">
+            <h3>{% trans "DOCUMENTACIÓN" %}</h3>
+            <ul>
+                <li><a href="#">{% trans "Centro de Ayuda" %}</a></li>
+                <li><a href="#">{% trans "Contacto" %}</a></li>
+                <li><a href="#">{% trans "FAQ" %}</a></li>
+                <li><a href="#">{% trans "Política de Privacidad" %}</a></li>
+            </ul>
+        </div>
+        <div class="column">
+            <h3>{% trans "REDES" %}</h3>
+            <ul>
+                <li><a href="#">Facebook</a></li>
+                <li><a href="#">Instagram</a></li>
+                <li><a href="#">Youtube</a></li>
+                <li><a href="#">Twitter</a></li>
+            </ul>
+        </div>
+    </footer>
+    <div class="copy">
+        {% trans "© E-PARK. Todos los derechos reservados 2023" %}<br>
+        <a href="#">{% trans "Términos y Condiciones" %}</a>
+    </div>
+
+    <script type="text/javascript">
+        window.addEventListener('scroll', reveal);
+
+        function reveal(){
+            var reveals = document.querySelectorAll('.reveal');
+
+            for(var i=0; i< reveals.length; i++)
+            {
+                var windowheight = window.innerHeight;
+                var revealtop = reveals[i].getBoundingClientRect().top;
+                var revealpoint = 175;
+
+                if (revealtop < windowheight - revealpoint) {
+                    reveals[i].classList.add('active')
+                }
+                else {
+                    reveals[i].classList.remove('active')
+                }
+            } 
+        }
+
+    </script>
+</body>
+</html>

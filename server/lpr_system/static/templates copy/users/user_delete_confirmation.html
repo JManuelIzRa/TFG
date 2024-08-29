@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %} Eliminar Usuario {% endblock %}
+
+{% block content %}
+<p>Está seguro que desea eliminar este usuario junto con todos sus cuestionarios realizados?</p>
+<p>
+    <form action="." method="POST">{% csrf_token %}
+        <input type="submit" value='Eliminar' class="btn btn-success">  <a href="{% url 'users:users' %}" class="btn btn-danger">Cancelar</a>
+    </form>
+</p>
+{% endblock %}

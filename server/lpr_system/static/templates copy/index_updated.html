@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Park</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/styles_updated.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="../images/logo.png" alt="E-Park">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">HOME</a></li>
+                    <li><a href="#">SERVICES</a></li>
+                    <li><a href="#">CONTACT</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <a href="#" class="login">Log In</a>
+                <a href="#" class="signup">Sign Up</a>
+            </div>
+        </div>
+    </header>
+    <section class="hero">
+        <div class="hero-content reveal">
+            <div class="hero-text">
+                <h2>YOUR ADVENTURE STARTS HERE:</h2>
+                <h1>EASY BOOKING,<br>BETTER TRAVEL</h1>
+                <p>Discover a new and easy way to plan your trips. With our platform, you can find and book the best options for accommodation in just a few clicks - stop worrying about the details and start enjoying your adventures right from the start!</p>
+                <a href="#" class="btn">BOOK NOW</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="info-section">
+        <div class="info-content reveal">
+            <div class="quote">
+                <div class="quote-icon">“</div>
+                <p>Discover the future of services and new technologies that will improve your traveling experience today.</p>
+                <div class="quote-icon">”</div>
+            </div>
+            <div class="info-cards">
+                <div class="info-card">
+                    <div class="icon-text">
+                        <img class="car-img" src="../images/car-icon.png" alt="Car Icon">
+                        <span>52</span>
+                    </div>
+                    <p>Explore the world with confidence, knowing that we offer services to countless locations. From busy cityscapes to serene beaches and remote mountains, we offer options in every corner of the globe.</p>
+                </div>
+                <div class="info-card">
+                    <div class="icon-text">
+                        <img class="users-img" src="../images/users-icon.png" alt="Users Icon">
+                        <span>2.5M</span>
+                    </div>
+                    <p>Join the millions of satisfied customers who have trusted us with their travel plans. Our user-friendly interface and customer service ensure an incredible booking experience, which has earned us excellent reviews and repeat customers.</p>
+                </div>
+                <div class="info-card">
+                    <div class="icon-text">
+                        <img class="sales-img" src="../images/sales-icon.png" alt="Sales Icon">
+                    </div>
+                    <p>Our experienced team understands the needs of modern travelers and constantly updates our offerings to provide the best possible options. Trust our experience to guide you on your next great adventure, ensuring that every trip is memorable.</p>
+                </div>
+            </div>
+            <div class="cta-button">
+                <a href="#" class="btn">Sign Up Now</a>
+            </div>
+        </div>
+        
+    </section>
+
+    <section class="technologies-section">
+        <div class="technologies-content reveals">
+
+            <div class="left">
+                <h1>We use the latest technologies</h1>
+            </div>
+            <div class="right">
+                <div class="info-card-tech">
+                    <img src="../images/star-icon.png" alt="Secure Communications Icon">
+                    <div class="text">
+                        <h2>Secure communications</h2>
+                        <p>We use servers with high-level security services.</p>
+                    </div>
+                </div>
+                <div class="info-card-tech">
+                    <img src="../images/privacy-icon.png" alt="Privacy Icon">
+                    <div class="text">
+                        <h2>Privacy</h2>
+                        <p>Your data will always be secure thanks to encryption.</p>
+                    </div>
+                </div>
+                <div class="info-card-tech">
+                    <img src="../images/standards-icon.png" alt="Standards and Regulations Icon">
+                    <div class="text">
+                        <h2>Standards and regulations</h2>
+                        <p>We use standards-based technologies that are continuously updated and enhanced to comply with regulations.</p>
+                    </div>
+                </div>
+                <div class="info-card-tech">
+                    <img src="../images/attention-icon.png" alt="Personalized Attention Icon">
+                    <div class="text">
+                        <h2>Personalized attention</h2>
+                        <p>We offer you a totally personal attention to solve any doubt or question.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script type="text/javascript">
+        window.addEventListener('scroll', reveal);
+
+        function reveal(){
+            var reveals = document.querySelectorAll('.reveal');
+
+            for(var i=0; i< reveals.length; i++)
+            {
+                var windowheight = window.innerHeight;
+                var revealtop = reveals[i].getBoundingClientRect().top;
+                var revealpoint = 150;
+
+                if (revealtop < windowheight - revealpoint) {
+                    reveals[i].classList.add('active')
+                }
+                else {
+                    reveals[i].classList.remove('active')
+                }
+            } 
+        }
+
+    </script>
+</body>
+</html>
