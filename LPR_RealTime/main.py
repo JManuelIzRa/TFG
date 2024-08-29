@@ -73,8 +73,14 @@ def configurate_camera_exit():
 def load_models():
     # load models
     coco_model = YOLO('yolov8n.pt')
+    coco_model.to('cpu')
+
     license_plate_detector = YOLO('./models/license_plate_detector.pt')
+    license_plate_detector.to('cpu')
+
     ocr_model = YOLO('./models/ocr.pt')
+    ocr_model.to('cpu')
+
 
     paht_predicciones = ".\\runs\\detect\\predict4"
 
@@ -402,7 +408,7 @@ def main_process(stop_event, send_images_event):
         q_frames.put(frame)
             
         #detections = coco_model(frame, verbose=True, classes=vehicles, conf=0.7)[0]
-        detections = coco_model.predict(frame, verbose=False, classes=vehicles, conf=0.7)[0]
+        detections = coco_model.predict(frame, verbose=False, classes=vehicles, conf=0.7, device='cpu')[0]
         detections_ = []
 
         detections = detections.boxes.data.tolist()
@@ -430,7 +436,7 @@ def main_process(stop_event, send_images_event):
             
             image_crop = frame[int(y1):int(y2), int(x1): int(x2)]
             
-            lp_predictions = license_plate_detector.predict(source=image_crop, verbose=False, device='cuda')[0]
+            lp_predictions = license_plate_detector.predict(source=image_crop, verbose=False, device='cpu')[0]
 
             #lp_predictions.save(f'.//license_plate_predictions//img{index_file_predict}.jpg')
             cv2.imshow("Coche detectado", image_crop)
