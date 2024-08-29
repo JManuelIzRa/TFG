@@ -261,53 +261,53 @@
         <h1 class="title">{% trans "Contacto" %}</h1>
         <p class="description">{% trans "Estamos aquí para ayudarle con cualquier pregunta o duda que pueda tener. Si necesita ayuda con una reserva, tiene alguna sugerencia o simplemente quiere saber más sobre nuestros servicios, nuestro equipo de asistencia está a su disposición." %}</p>
         <div class="contact-container">
-        <div class="contact-section contact-info">
-            <p><strong>{% trans "Utiliza las siguientes vías de contacto, o rellena el formulario." %}</strong></p>
-            <p>{% trans "Por correo electrónico" %}</p>
-                <a href="mailto:p82izraj@uco.es">p82izraj@uco.es</a>
-            <p>{% trans "Por redes sociales" %}</p>
-                <a href="https://twitter.com/e-park" target="_blank">@e-park</a>
-            <p>{% trans "Llamando" %}</p>
-                <a href="tel:+34956123456">956-123-456</a>
-        </div>
-        <div class="contact-section contact-form">
-            <div class="form-group">
-                <label  for="{{ form.name.id_for_label }}">{% trans "NOMBRE" %}</label>
-                {{ form.name }}
-                {% if form.name.errors %}
-                    <div class="error">{{ form.name.errors }}</div>
-                {% endif %}
+            <div class="contact-section contact-info">
+                <p><strong>{% trans "Utiliza las siguientes vías de contacto, o rellena el formulario." %}</strong></p>
+                <p>{% trans "Por correo electrónico" %}</p>
+                    <a href="mailto:p82izraj@uco.es">p82izraj@uco.es</a>
+                <p>{% trans "Por redes sociales" %}</p>
+                    <a href="https://twitter.com/e-park" target="_blank">@e-park</a>
+                <p>{% trans "Llamando" %}</p>
+                    <a href="tel:+34956123456">956-123-456</a>
             </div>
-
-            <div class="form-group">
-                <label  for="{{ form.email.id_for_label }}">{% trans "CORREO ELECTRÓNICO" %}</label>
-                {{ form.email }}
-                {% if form.email.errors %}
-                    <div class="error">{{ form.email.errors }}</div>
-                {% endif %}
-            </div>
-
-            <div class="form-group">
-                <label  for="{{ form.phone.id_for_label }}">{% trans "TELÉFONO" %}</label>
-                {{ form.phone }}
-                {% if form.phone.errors %}
-                    <div class="error">{{ form.phone.errors }}</div>
-                {% endif %}
-            </div>
-
-            <div class="form-group">
-                <label  for="{{ form.message.id_for_label }}">{% trans "MENSAJE" %}</label>
-                {{ form.message }}
-                {% if form.message.errors %}
-                    <div class="error">{{ form.message.errors }}</div>
-                {% endif %}
-            </div>
+        
             
-            <form method="post">
+            <form class="contact-section contact-form" method="post">
                 {% csrf_token %}
+                
+                    <div class="form-group">
+                        <label  for="{{ form.name.id_for_label }}">{% trans "NOMBRE" %}</label>
+                        {{ form.name }}
+                        {% if form.name.errors %}
+                            <div class="error">{{ form.name.errors }}</div>
+                        {% endif %}
+                    </div>
+        
+                    <div class="form-group">
+                        <label  for="{{ form.email.id_for_label }}">{% trans "CORREO ELECTRÓNICO" %}</label>
+                        {{ form.email }}
+                        {% if form.email.errors %}
+                            <div class="error">{{ form.email.errors }}</div>
+                        {% endif %}
+                    </div>
+        
+                    <div class="form-group">
+                        <label  for="{{ form.phone.id_for_label }}">{% trans "TELÉFONO" %}</label>
+                        {{ form.phone }}
+                        {% if form.phone.errors %}
+                            <div class="error">{{ form.phone.errors }}</div>
+                        {% endif %}
+                    </div>
+        
+                    <div class="form-group">
+                        <label  for="{{ form.message.id_for_label }}">{% trans "MENSAJE" %}</label>
+                        {{ form.message }}
+                        {% if form.message.errors %}
+                            <div class="error">{{ form.message.errors }}</div>
+                        {% endif %}
+                    </div>
                 <button type="submit">{% trans "ENVIAR" %}</button>
             </form>
-            </div>
         </div>
     </div>
 

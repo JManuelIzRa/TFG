@@ -324,17 +324,19 @@
     <form method="get" action="{% url 'license_plate:license_plate' %}">
         <div class="search-bar">
             <input type="text" name="plate_number" class="form-control bg-light border-0 small" placeholder="Buscar matrícula" value="{{ request.GET.plate_number }}">
-            <img class="filter-icon"src="{% static '/images/filter.png' %}" style="width: 28px; height: 28px;"  title="Filter"></i>
-            <button>SEARCH</button>
-            <button class="button" type="submit">{% trans "REINICIAR FILTROS"%}</button>
+            <img class="filter-icon" src="{% static '/images/filter.png' %}" style="width: 28px; height: 28px;" title="Filter">
+            <button type="submit">SEARCH</button>
+            <a href="{% url 'license_plate:license_plate' %}" style="font-family: 'Montserrat', sans-serif;display: inline-block; padding: 7px 20px;margin-left: 10px;border: none;background-color: #d3ff00;font-weight: bold;color: #000; cursor: pointer;border-radius: 20px; text-align: center; text-decoration: none;" role="button">{% trans "REINICIAR FILTROS" %}</a>
         </div>
-
+    
         <div class="filter-section" id="filterSection">
-            <label for="startDate">{% trans "FECHA DE ENTRADA"%}</label>
-            <input type="date" id="startDate" placeholder="Enter start date">
-            <label for="endDate">{% trans "FECHA DE SALIDA"%}</label>
-            <input type="date" id="endDate" placeholder="Enter end date">
+            <label for="entry_date">{% trans "FECHA DE ENTRADA" %}</label>
+            <input type="date" id="entry_date" name="entry_date" placeholder="Enter start date" value="{{ request.GET.entry_date }}">
+            
+            <label for="exit_date">{% trans "FECHA DE SALIDA" %}</label>
+            <input type="date" id="exit_date" name="exit_date" placeholder="Enter end date" value="{{ request.GET.exit_date }}">
         </div>
+    </form>
 
     <div class="table-container">
         <table>

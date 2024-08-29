@@ -149,17 +149,24 @@ class LicensePlateListView(LoginRequiredMixin, ListView):
         plate_number = self.request.GET.get('plate_number')
         entry_date = self.request.GET.get('entry_date')
         exit_date = self.request.GET.get('exit_date')
-
         filter_type = self.request.GET.get('filter')
         
+        # Inicia el queryset con todos los registros
         data = LicensePlate.objects.all()
         
+        # Filtra por matrícula si se proporciona
         if plate_number:
             data = data.filter(plate_number__icontains=plate_number)
-
         
+        # Filtra por rango de fechas si se proporciona
+        if entry_date:
+            data = data.filter(entry_date__gte=entry_date)
+        if exit_date:
+            data = data.filter(exit_date__lte=exit_date)
+        
+        # Filtra por tipo de filtro (día, semana, mes)
         if filter_type:
-            now = datetime.date.today()
+            now = datetime.today()
             if filter_type == 'day':
                 start_date = now - timedelta(days=1)
             elif filter_type == 'week':
@@ -168,6 +175,7 @@ class LicensePlateListView(LoginRequiredMixin, ListView):
                 start_date = now - timedelta(days=30)
             data = data.filter(entry_date__gte=start_date)
         
+        # Ordena los resultados por fecha de entrada
         data = data.order_by('-entry_date')
         return data
     

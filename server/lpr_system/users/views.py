@@ -45,39 +45,32 @@ class UserListView(LoginRequiredMixin, ListView):
         return context
 
     def get_queryset(self):
-        user = self.request.GET.get('user')
+        qs = super().get_queryset()
+
+        # Recuperar parámetros de búsqueda de la URL
+        user_type = self.request.GET.get('user_type')
         firstname = self.request.GET.get('firstname')
         secondname = self.request.GET.get('secondname')
         username = self.request.GET.get('username')
-        qs = User.objects.filter(deleted=False)
-        if user:
-            if user == 'client':
+
+        # Aplicar filtros según los parámetros recibidos
+        if user_type:
+            if user_type == 'client':
                 qs = qs.filter(is_admin=False)
-            elif user == 'admin':
+            elif user_type == 'admin':
                 qs = qs.filter(is_admin=True)
+
         if firstname:
-            qs = qs.filter(nombre__icontains=firstname)
+            qs = qs.filter(firstname__icontains=firstname)
+
         if secondname:
-            qs = qs.filter(apellidos__icontains=secondname)
+            qs = qs.filter(secondname__icontains=secondname)
+
         if username:
-            qs = qs.filter(code=username)
+            qs = qs.filter(username__icontains=username)
 
         return qs.order_by('secondname', 'firstname')
 
-
-class AdminCreateView(LoginRequiredMixin, CreateView):
-    model = User
-    form_class = CreateAdminForm
-    success_url = reverse_lazy('users:users')
-
-    template_name = 'users/create_user.html'
-
-    def form_valid(self, form):
-        user = form.save(commit=False)
-        password = form.cleaned_data['password']
-        user.set_password(password)
-        user.save()
-        return super().form_valid(form)
 
 
 class UserUpdateView(LoginRequiredMixin, UpdateView):
@@ -103,11 +96,21 @@ class UserUpdateView(LoginRequiredMixin, UpdateView):
         context['user'] = user_instance
         
         return context
+    
+class UserCreateView(LoginRequiredMixin, CreateView):
+    model = User
+    form_class = UserCreationForm
+    template_name = 'users/create_user.html'
+    success_url = reverse_lazy('users:users')  # Redirige a la lista de usuarios después de la creación
+
+    def form_valid(self, form):
+        # Aquí puedes añadir cualquier lógica extra que necesites antes de guardar el formulario
+        return super().form_valid(form)
 
 class DeletePersonView(LoginRequiredMixin, DeleteView, SuccessMessageMixin):
     model = User
     success_url = reverse_lazy('users:users')
-    template_name = 'users/user_delete_confirmation.html'
+    template_name = 'users/index.html'
     success_message = "El usuario %(nombre)s %(apellidos)s ha sido eliminado correctamente."
 
     def delete(self, request, *args, **kwargs):

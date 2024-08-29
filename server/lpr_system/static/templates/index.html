@@ -25,6 +25,16 @@
             position: relative;
         }
 
+        .message {
+            padding: 10px;
+            border: 1px solid #d4edda;
+            border-radius: 5px;
+            background-color: #d4edda;
+            color: #155724;
+            font-style: italic;
+            margin: 20px 0;
+        }
+
         .logout{
             background: none;
             border: none;
@@ -85,7 +95,7 @@
 
     {% if request.session.contact_success %}
         <h1>{% trans "¡Gracias!" %}</h1>
-        <p>
+        <p class="message" >
             {% blocktrans trimmed  %}
             Su mensaje se ha enviado correctamente. En breve nos pondremos en contacto con usted.
             {% endblocktrans %}

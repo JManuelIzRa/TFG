@@ -122,6 +122,32 @@
             border-radius: 20px;
         }
 
+        .user-type-select {
+            padding: 10px;
+            margin: 0 5px;
+            border: none;
+            border-radius: 5px;
+            width: 200px;
+            -webkit-appearance: none; /* Para eliminar la flecha por defecto en navegadores WebKit (Chrome, Safari) */
+            -moz-appearance: none; /* Para eliminar la flecha por defecto en Firefox */
+            appearance: none; /* Para eliminar la flecha por defecto en navegadores modernos */
+            background-color: #fff; /* Fondo blanco para que coincida con los inputs */
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave */
+            color: #333; /* Color del texto */
+            cursor: pointer; /* Cambiar el cursor a puntero */
+        }
+
+        /* Estilo adicional para el select si quieres agregar una flecha personalizada */
+        .user-type-select::after {
+            content: '▼';
+            font-size: 12px;
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none; /* Para que la flecha no interfiera con las interacciones del select */
+        }
+
         .table-container {
             margin: 0 auto;
             width: 80%;
@@ -260,11 +286,24 @@
     </header>
 
     <div class="search-bar">
-        <input type="text" placeholder="Enter the name">
-        <input type="text" placeholder="Enter the surname">
-        <input type="text" placeholder="Enter the user id">
-        <button style="background-color: #d3ff00;"> {% trans "BUSCAR" %}</button>
-        <button style="background-color: #d3ff00;">{% trans "+NUEVO USUARIO" %}</button>
+        <form method="GET" action="">
+            <input type="text" name="firstname" placeholder="Enter the name" value="{{ request.GET.firstname }}">
+            <input type="text" name="secondname" placeholder="Enter the surname" value="{{ request.GET.secondname }}">
+            <input type="text" name="username" placeholder="Enter the user id" value="{{ request.GET.username }}">
+            
+            <select name="user_type" class="user-type-select">
+                <option value="">Select User Type</option>
+                <option value="client" {% if request.GET.user_type == 'client' %}selected{% endif %}>Client</option>
+                <option value="admin" {% if request.GET.user_type == 'admin' %}selected{% endif %}>Admin</option>
+            </select>
+            
+            <button type="submit" style="background-color: #d3ff00;">{% trans "BUSCAR" %}</button>
+        </form>
+        
+        <form action="{% url 'users:create_user' %}" method="POST">
+            {% csrf_token %}
+            <button type="submit" style="background-color: #d3ff00;">{% trans "+NUEVO USUARIO" %}</button>
+        </form>
     </div>
 
     <div class="table-container">
