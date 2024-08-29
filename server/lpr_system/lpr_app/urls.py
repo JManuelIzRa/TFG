@@ -16,4 +16,5 @@ urlpatterns = [
         name='change-password'
     ),
     path('book/', include('book.urls', namespace='book')),
+    path('terms-and-conditions/', views.TermsAndConditionsView.as_view(), name='terms-and-conditions')
 ]

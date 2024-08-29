@@ -11,7 +11,6 @@ import glob
 import torch
 from easyocr import Reader
 from ultralytics.utils.plotting import Annotator
-import pytesseract
 import threading
 import concurrent.futures
 

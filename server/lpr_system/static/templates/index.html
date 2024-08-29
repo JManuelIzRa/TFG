@@ -222,7 +222,7 @@
                 <li><a href="#">{% trans "Centro de Ayuda" %}</a></li>
                 <li><a href="#">{% trans "Contacto" %}</a></li>
                 <li><a href="#">{% trans "FAQ" %}</a></li>
-                <li><a href="#">{% trans "Política de Privacidad" %}</a></li>
+                <li><a href="{% url 'terms-and-conditions' %}">{% trans "Política de Privacidad" %}</a></li>
             </ul>
         </div>
         <div class="column">
@@ -237,7 +237,7 @@
     </footer>
     <div class="copy">
         {% trans "© E-PARK. Todos los derechos reservados 2023" %}<br>
-        <a href="#">{% trans "Términos y Condiciones" %}</a>
+        <a href="{% url 'terms-and-conditions' %}">{% trans "Términos y Condiciones" %}</a>
     </div>
 
     <script type="text/javascript">

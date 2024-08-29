@@ -201,3 +201,6 @@ class ContactFormView(FormView):
         # Redirigir a la página de inicio con un mensaje de éxito en la sesión
         self.request.session['contact_success'] = True
         return redirect(self.success_url)
+    
+class TermsAndConditionsView(TemplateView):
+    template_name = 'terms-and-conditions.html'

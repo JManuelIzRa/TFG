@@ -181,6 +181,6 @@ WKHTMLTOPDF_CMD = os.path.join(BASE_DIR, 'static', 'wkhtmltopdf.exe')
 
 EMAIL_HOST = 'smtp.googlemail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = ""
-EMAIL_HOST_PASSWORD = ""
+EMAIL_HOST_USER = "jmanuel.izradev@gmail.com"
+EMAIL_HOST_PASSWORD = "kaba dbtb icbd qzxb"
 EMAIL_USE_TLS = True
