@@ -154,7 +154,9 @@ class EditReservationView(LoginRequiredMixin, View):
 
 class DeleteReservationView(LoginRequiredMixin, DeleteView):
     model = Reservation
-    template_name = 'confirm_delete.html'
+    template_name = 'book-history/index.html'
+    success_message = "La reserva ha sido eliminada correctamente."
+
     success_url = reverse_lazy('book:manage_reservations')
 
     def get_context_data(self, **kwargs):
